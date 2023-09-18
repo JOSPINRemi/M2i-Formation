@@ -3,11 +3,13 @@ import { Task } from "./Task.js";
 export class TaskList {
     constructor() {
         this.tasks = [];
+        this.cpt = 0;
     }
 
     addTask(text) {
-        const id = this.tasks.length + 1;
-        const task = new Task(id, text);
+        // const id = this.tasks.length + 1;
+        // const id = this.cpt++;
+        const task = new Task(this.cpt++, text);
         this.tasks.push(task);
     }
 
@@ -18,7 +20,7 @@ export class TaskList {
         //             if(this.tasks[i].id !== id){
         //                     tab.push(this.tasks[i])
         //             }
-        //     })
+        //     }
 
         // this.tasks = tab
     }
