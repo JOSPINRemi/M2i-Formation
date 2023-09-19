@@ -33,7 +33,7 @@ BtnPayer.addEventListener("click", () => {
         30 < timeInParkingMillis(parking[i]) &&
         timeInParkingMillis(parking[i]) <= 45
       ) {
-        prix = 1.3;
+        prix = 1.7;
       } else if (timeInParkingMillis(parking[i]) > 45) {
         prix = 6;
       }
@@ -41,18 +41,18 @@ BtnPayer.addEventListener("click", () => {
     }
   }
   // message = `Le véhicule ${valueImmat} n'existe pas!`;
-  console.log("BtnPayer");
-  console.table(parking);
+  // console.log("BtnPayer");
+  // console.table(parking);
 });
 
 BtnTicket.addEventListener("click", () => {
   parking.push(new Vehicule(valueImmat, new Date()));
   message = `Veuillez prendre votre ticket pour le véhicule ${valueImmat}.`;
   // message = `Le véhicule ${valueImmat} est déjà dans le parking`;
-  console.log("BtnTicket");
-  console.table(parking);
+  // console.log("BtnTicket");
+  // console.table(parking);
 });
 
 function timeInParkingMillis(vehicule) {
-  return Math.round((vehicule.outTime - vehicule.inTime) / 1000);
+  return Math.round((vehicule.outTime - vehicule.inTime) / 60000);
 }
