@@ -19,7 +19,6 @@ fetch(apiUrl + id)
     return response.json();
   })
   .then((data) => {
-    console.log(data.types[0].type.name);
     result.appendChild(affichagePokemon(data));
   })
   .catch((error) => {
@@ -29,12 +28,20 @@ fetch(apiUrl + id)
 function affichagePokemon(inData) {
   let pokemon = document.createElement("div");
   pokemon.appendChild(pokemonName(inData.name));
-  pokemon.appendChild(
-    pokemonPicture(inData.sprites.front_default, inData.name, "")
-  );
-    pokemon.appendChild(pokemonType("Type", `${inData.types}`));
-  pokemon.appendChild(pokemonFeatures("Taille", `${inData.height} cm`));
+  let pP = pokemonPicture(inData.sprites.front_default, inData.name, "");
+  pP.style.width = "50%";
+  pokemon.appendChild(pP);
+  pokemon.appendChild(pokemonType("Type", inData.types));
+  pokemon.appendChild(pokemonFeatures("Taille", `${inData.height} dm`));
   pokemon.appendChild(pokemonFeatures("Poids", `${inData.weight} kg`));
+  pokemon.style.display = "flex";
+  pokemon.style.flexDirection = "column";
+  pokemon.style.alignItems = "center";
+  pokemon.style.padding = "0";
+  pokemon.style.border = "1px solid black";
+  pokemon.style.borderRadius = "10px";
+  pokemon.style.backgroundColor = "lightgrey";
+  pokemon.style.width = "50%";
   return pokemon;
 }
 
@@ -60,17 +67,18 @@ function pokemonType(inLabel, inData) {
   let paragraph = document.createElement("p");
   let bold = document.createElement("b");
   let label = document.createTextNode(`${inLabel} : `);
-  console.log(inData[0].type.name);
-  let types = [];
-  for (let i = 0; i < inData.length; i++) {
-    types.push(pokemonPicture(inData[i].type.url, inData[i].type.name, inData[i].type.name))
-  }
   bold.appendChild(label);
   paragraph.appendChild(bold);
   div.appendChild(paragraph);
-  types.forEach((type) => {
-    div.appendChild(type);
-  });
+  for (let i = 0; i < inData.length; i++) {
+    div.appendChild(
+      pokemonPicture(
+        inData[i].type.url,
+        inData[i].type.name,
+        inData[i].type.name
+      )
+    );
+  }
   return div;
 }
 
