@@ -72,3 +72,9 @@ let monObjetC = {
     age: 24,
 };
 monObjetC.age;
+let monObjet = {
+    firstName: "Dupont",
+};
+console.log("monObjet objet : " + typeof monObjet);
+monObjet = [];
+console.log("monObjet objet : " + typeof monObjet);

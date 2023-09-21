@@ -145,3 +145,11 @@ let monObjetC: {
 
 monObjetC.age; // trouve la propriété
 // de préférence utilisation de l'inférence
+
+let monObjet: object = {
+  firstName: "Dupont",
+};
+
+console.log("monObjet objet : " + typeof monObjet);
+monObjet = [];
+console.log("monObjet objet : " + typeof monObjet);
