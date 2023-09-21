@@ -41,3 +41,6 @@ let person2 = {
   isLoggedIn: true,
 };
 console.log(`La person2 a ${person2.age} ans`);
+
+// 8.
+let infos: [string, number];
