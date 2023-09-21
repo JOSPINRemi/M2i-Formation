@@ -44,3 +44,31 @@ numbers.push(5);
 console.log(numbers);
 console.log(numbers2);
 let tab;
+let tab2 = [true, "Christophe"];
+console.log(tab2);
+tab2[1] = "toto";
+tab2.push("24");
+console.log(tab2);
+let myPerson;
+myPerson = ["Albert", "Dupont", 45];
+myPerson.push("toto");
+myPerson.push(22);
+console.log(myPerson);
+console.log(myPerson.length);
+let monObjetA = {
+    firstName: "Albert",
+    lastName: "Dupont",
+    age: 35,
+};
+let monObjetB = {
+    firstName: "Albert",
+    lastName: "Dupont",
+    age: 35,
+};
+monObjetA.age;
+let monObjetC = {
+    firstName: "Albert",
+    lastName: "Dupont",
+    age: 24,
+};
+monObjetC.age;

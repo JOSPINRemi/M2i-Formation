@@ -90,3 +90,58 @@ console.log(numbers2);
 let tab: any[];
 
 // On peut déclarer un tableau qui contient plusieurs types alors tous ces types peuvent être présent dans le tableau
+
+let tab2 = [true, "Christophe"];
+console.log(tab2);
+tab2[1] = "toto";
+tab2.push("24");
+console.log(tab2);
+
+/**
+ * Tuples
+ * On peut aussi via le Typescript créer des tuples, des Array de taille fixe
+ * On devra du coup avoir le bon nombre d'éléments dans la variable et le bon typage dans le bon ordre
+ */
+
+let myPerson: [string, string, number];
+myPerson = ["Albert", "Dupont", 45];
+// myPerson = ["Albert", 45, "Dupont"]; // erreur
+myPerson.push("toto"); // incohérence mais fonctionne
+myPerson.push(22); // incohérence mais fonctionne
+// myPerson.push(true); // ne fonctionne pas
+console.log(myPerson);
+console.log(myPerson.length);
+
+// myPerson[3]; // index non connu donc erreur
+
+// Objet
+
+let monObjetA = {
+  firstName: "Albert",
+  lastName: "Dupont",
+  age: 35,
+};
+
+// indicateur de valeur objet
+let monObjetB: object = {
+  // permet de definir que c'est un objet sans précision
+  firstName: "Albert",
+  lastName: "Dupont",
+  age: 35,
+};
+
+monObjetA.age;
+// monObjetB.age; // ne trouve rien
+
+let monObjetC: {
+  firstName: string;
+  lastName: string;
+  age: number;
+} = {
+  firstName: "Albert",
+  lastName: "Dupont",
+  age: 24,
+};
+
+monObjetC.age; // trouve la propriété
+// de préférence utilisation de l'inférence
