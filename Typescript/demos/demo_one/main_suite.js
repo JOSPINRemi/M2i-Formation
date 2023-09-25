@@ -92,3 +92,11 @@ let myTitle = document.querySelector("#title");
 console.log(myTitleHTML.textContent);
 console.log(myTitleHTML2.textContent);
 myTitle.textContent = "Fin démo Typescript";
+function onFormSubmit(event) {
+    event.preventDefault();
+}
+let monTexte = "";
+function onInputChange(event) {
+    monTexte = event.target.value;
+    monTexte = event.target.value;
+}

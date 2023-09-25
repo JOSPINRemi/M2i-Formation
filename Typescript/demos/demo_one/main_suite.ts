@@ -153,3 +153,17 @@ myTitle.textContent = "Fin démo Typescript";
 // HTMLInputElement
 // img
 // HTMLImageElement
+
+// Il existe un type de base appelé HTMLElement qui est une représentation générique de tous les éléments HTML.
+// HTMLElement inclut le propriétés et méthodes de base que l'on retrouve sur tous les éléments HTML.
+
+function onFormSubmit(event: SubmitEvent) {
+  event.preventDefault();
+}
+
+let monTexte = "";
+
+function onInputChange(event: InputEvent) {
+  monTexte = (<HTMLInputElement>event.target).value;
+  monTexte = (event.target as HTMLInputElement).value;
+}
