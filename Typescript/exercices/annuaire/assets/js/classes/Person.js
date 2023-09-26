@@ -7,6 +7,9 @@ export class Person {
         this._email = email;
         this._phonenumber = phonenumber;
     }
+    get id() {
+        return this._id;
+    }
     get firstname() {
         return this._firstname;
     }

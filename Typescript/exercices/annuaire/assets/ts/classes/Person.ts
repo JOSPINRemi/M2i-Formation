@@ -22,6 +22,10 @@ export class Person {
     this._phonenumber = phonenumber;
   }
 
+  get id(): number {
+    return this._id;
+  }
+
   get firstname(): string {
     return this._firstname;
   }
