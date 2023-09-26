@@ -167,3 +167,21 @@ function onInputChange(event: InputEvent) {
   monTexte = (<HTMLInputElement>event.target).value;
   monTexte = (event.target as HTMLInputElement).value;
 }
+
+// Union Type
+
+let strOrNum: string | number; // string ou number
+
+strOrNum = "true";
+strOrNum = 42;
+
+type stringorNumber = string | number;
+
+let strNum: stringorNumber;
+
+let monTableau: stringorNumber[] = [];
+
+monTableau.push(23);
+monTableau.push("Hello");
+
+console.table(monTableau);

@@ -100,3 +100,11 @@ function onInputChange(event) {
     monTexte = event.target.value;
     monTexte = event.target.value;
 }
+let strOrNum;
+strOrNum = "true";
+strOrNum = 42;
+let strNum;
+let monTableau = [];
+monTableau.push(23);
+monTableau.push("Hello");
+console.table(monTableau);
