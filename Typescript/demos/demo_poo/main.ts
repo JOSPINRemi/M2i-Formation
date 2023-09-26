@@ -1,4 +1,5 @@
 import { Person, Student } from "./classes/Person.js";
+import { Client, ClientRegulier } from "./interfaces/Client.js";
 
 let person: Person;
 
@@ -20,3 +21,34 @@ myStudent = new Student("Titi", "TATA", 45, 545215, true);
 console.log(myStudent.toString());
 
 console.log(`Il y a actuellement ${Person.count} personnes`);
+
+console.clear();
+
+// Utilisation interface
+
+let monObjA: Client = {
+  firstname: "Albert",
+  lastname: "DUPONT",
+};
+
+let monObjB: Client = {
+  firstname: "Albert",
+  lastname: "DUPONT",
+  numeroIdNat: 123456,
+
+  acheter() {
+    if (this.firstname === "blabla") {
+      return 10;
+    } else {
+      return 25;
+    }
+  },
+};
+
+let monObjC: ClientRegulier = {
+  firstname: "Thierry",
+  lastname: "DUPONT",
+  pointFid: 15
+};
+
+console.log(monObjC.firstname);
