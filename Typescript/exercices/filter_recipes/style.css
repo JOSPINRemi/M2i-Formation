@@ -1,0 +1,31 @@
+* {
+  font-family: sans-serif;
+}
+
+#main,
+#aside {
+  color: white;
+  background-color: #1e1e1e;
+  padding: 2px 20px;
+  border-radius: 15px;
+}
+
+.recipeItem {
+  background-color: transparent;
+  border: 1px solid grey;
+  border-radius: 15px;
+  margin: 10px 0;
+}
+
+.recipeName {
+  text-align: center;
+}
+
+.recipeTimes {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+input[type="text"] {
+  border-radius: 5px;
+}
