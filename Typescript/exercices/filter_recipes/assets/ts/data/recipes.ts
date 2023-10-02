@@ -1,7 +1,7 @@
 export const recipes: any = {
   "b104aff8-bdfe-4171-93e3-03e09465916b": {
     name: "Tomato Basil Pasta",
-    servings: 4,
+    servings: 4,  
     prepTime: "15 mins",
     cookTime: "20 mins",
     ingredients: [

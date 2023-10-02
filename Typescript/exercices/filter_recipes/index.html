@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Filter Recipes</title>
+    <link rel="stylesheet" href="./style.css" />
     <script type="module" src="./assets/js/main.js" defer></script>
   </head>
   <body>
@@ -11,6 +12,47 @@
     <aside id="aside">
       <h2>Filters</h2>
       <hr />
+      <div>
+        <label for="preparationTime" id="preparationTimeLabel"
+          >Preparation time :
+          <span id="preparationTimeValue"></span>
+        </label>
+        <br />
+        <input
+          type="range"
+          name="preparationTime"
+          id="preparationTime"
+          min="0"
+          max="15"
+          step="1"
+          value="15"
+        />
+      </div>
+      <div>
+        <label for="cookingTime" id="cookingTimeLabel"
+          >Cooking time : <span id="cookingTimeValue"></span
+        ></label>
+        <br />
+        <input
+          type="range"
+          name="cookingTime"
+          id="cookingTime"
+          min="0"
+          max="30"
+          step="1"
+          value="30"
+        />
+      </div>
+      <div>
+        <label for="name" id="nameLabel">Name :</label>
+        <br />
+        <input type="text" name="name" id="name" value="" />
+      </div>
+      <div>
+        <label for="ingredients" id="ingredientsLabel">Ingredients :</label>
+        <br />
+        <select name="ingredients" id="ingredients" multiple></select>
+      </div>
     </aside>
     <main id="main">
       <h2>Recipes</h2>
