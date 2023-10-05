@@ -1,27 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const MinuteurComponent = () => {
   const [counter, setCounter] = useState(10);
-  let intervalId;
+  let intervalId = undefined;
 
   const startMinuteur = () => {
-    intervalId = setInterval(() => {
-      getTime();
+    setTimeout(() => {
+      setCounter(counter - 1);
     }, 1000);
   };
 
-  const getTime = () => {
-    if (counter > 0) {
+  useEffect(() => {
+    intervalId = setInterval(() => {
       setCounter(counter - 1);
+    }, 1000);
+
+    if (counter > 0) {
+      console.log("--- Counter Updated ---");
       console.log(counter);
-    } else if (counter == 0) {
-      clearInterval(intervalId);
+    } else if (counter === 0) {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
     }
-  };
+  }, [counter]);
 
   return (
     <div>
-      <button onClick={startMinuteur}>Start</button>
+      <p>{counter}</p>
+      <button type="button" onClick={startMinuteur}>
+        Start
+      </button>
     </div>
   );
 };
