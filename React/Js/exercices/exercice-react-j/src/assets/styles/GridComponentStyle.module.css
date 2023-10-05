@@ -1,0 +1,28 @@
+.grid {
+  display: grid;
+
+  > .card {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid grey;
+
+    > img {
+      width: 100%;
+    }
+
+    > p {
+      font-family: "Courier New", Courier, monospace;
+      text-align: center;
+    }
+
+    > button {
+      align-self: flex-end;
+      border-color: white;
+      &:hover {
+        color: black;
+        background-color: white;
+        border-color: black;
+      }
+    }
+  }
+}
