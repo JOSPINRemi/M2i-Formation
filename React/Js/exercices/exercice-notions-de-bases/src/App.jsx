@@ -16,11 +16,10 @@ function App() {
     },
   ];
   return (
-    <AppContext.Provider value={{setTasks, STATUS}}>
+    <AppContext.Provider value={{ setTasks, STATUS }}>
       <FormComponent />
       {tasks.map((task, id) => (
-        <TaskComponent key={id} />
-        // <button type="button" value={task.status === 'inProgess' ? 'inProgess' : 'over'} onClick={setTasks(prevState => ([...prevState]))}>{task.status === 'inProgess' ? 'En cours' : 'Finie'}</button>
+        <TaskComponent key={id} displayedTask={{ task: task, id: id }} />
       ))}
     </AppContext.Provider>
   );
