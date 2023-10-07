@@ -1,15 +1,17 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styles from "../assets/styles/FormComponentStyles.module.css";
 import { AppContext } from "../contexts/AppContext.js";
 
-let addTaskBtnDisabledStatus = true;
-
 const FormComponent = () => {
   const { setTasks, STATUS } = useContext(AppContext);
+
+  const formRef = useRef();
   const taskNameRef = useRef();
   const deadLineRef = useRef();
   const statusRef = useRef();
 
+  const [addTaskBtnDisabledStatus, setAddTaskBtnDisabledStatus] =
+    useState(true);
 
   useEffect(() => {
     console.log("Vérification des informations saisies");
@@ -19,10 +21,10 @@ const FormComponent = () => {
       statusRef.current?.value.trim() !== ""
     ) {
       console.log("Vous pouvez ajouter les informations");
-      addTaskBtnDisabledStatus = false;
+      setAddTaskBtnDisabledStatus(false);
     }
     return () => {
-      console.clear();
+      // console.clear();
     };
   }, [
     taskNameRef.current?.value,
@@ -49,12 +51,17 @@ const FormComponent = () => {
     console.log("Détails de la tâche");
     console.table(newTask);
     console.groupEnd();
+
+    setTimeout(() => {
+      formRef.current.reset();
+      setAddTaskBtnDisabledStatus(true);
+    }, 2000);
   };
 
   return (
     <div className={styles.monStyle}>
       <h1>Formulaire de création de tâche</h1>
-      <form onSubmit={submitFormHandler}>
+      <form onSubmit={submitFormHandler} ref={formRef}>
         <div>
           <label htmlFor="taskName">Nom : </label>
           <input
@@ -89,9 +96,7 @@ const FormComponent = () => {
             ))}
           </select>
         </div>
-        <button type="button" disabled={addTaskBtnDisabledStatus}>
-          Ajouter une tâche
-        </button>
+        <button disabled={addTaskBtnDisabledStatus}>Ajouter une tâche</button>
       </form>
     </div>
   );
