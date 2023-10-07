@@ -1,0 +1,20 @@
+.monStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > form {
+    > button {
+      color: white;
+      background-color: black;
+      &:enabled:hover {
+        color: black;
+        background-color: white;
+        border-color: black;
+      }
+      &:disabled {
+        background-color: grey;
+      }
+    }
+  }
+}
