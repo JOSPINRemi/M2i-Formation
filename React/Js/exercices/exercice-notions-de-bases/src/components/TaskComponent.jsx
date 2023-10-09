@@ -13,18 +13,31 @@ const TaskComponent = (props) => {
       <p>
         <b>{task.name}</b>
       </p>
-      <p>{task.deadline.split("-").reverse().join("/")}</p>
+      <p>{task.deadline.toLocaleDateString()}</p>
       <p
       // style={{ display: statusDisplay}}
       >
         {task.status === STATUS[0].value ? STATUS[0].label : STATUS[1].label}
+        {/* {STATUS.map((elementStatus) => {
+          elementStatus.value === task.status && <span>{elementStatus.label}</span>;
+        })} */}
       </p>
       {/* <button
       onClick={statusDisplay === "none" ? setStatusDisplay("block") : setStatusDisplay("none")}
       >
         {statusDisplay=== "none" ? "Afficher" : "Masquer"} le status
       </button> */}
-      <button type="button" style={{display: task.status === STATUS[1].value ? "block" : "none", color: "red"}}>X</button>
+
+      {task.status === STATUS[1].value && (
+        <button
+          type="button"
+          style={{
+            color: "red",
+          }}
+        >
+          X
+        </button>
+      )}
     </div>
   );
 };
