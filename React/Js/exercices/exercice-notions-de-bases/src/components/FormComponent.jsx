@@ -36,7 +36,7 @@ const FormComponent = () => {
     event.preventDefault();
 
     const taskName = taskNameRef.current.value;
-    const deadLine = deadLineRef.current.value;
+    const deadLine = new Date(deadLineRef.current.value);
     const status = statusRef.current.value;
 
     const newTask = {
