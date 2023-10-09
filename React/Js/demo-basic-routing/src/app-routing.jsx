@@ -7,13 +7,14 @@ import Menu from "./routes/Menu";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
-    errorElement: <ErrorPage />
-    // children: [
-    //   { path: "/", element: <App /> },
-    //   { path: "/form", element: <Form /> },
-    // ],
-  }
+    element: <Menu />,
+    errorElement: <ErrorPage />,
+    children: [
+      { path: "/", element: <App /> },
+      { path: "/form", element: <Form /> },
+    ],
+  },
+  // { path: "/", element: <App />, errorElement: <ErrorPage /> },
   // { path: "/form", element: <Form />, errorElement: <ErrorPage /> },
 ]);
 
