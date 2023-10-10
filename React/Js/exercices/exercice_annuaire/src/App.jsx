@@ -1,35 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import { AppContext } from "./contexts/AppContext";
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [users, setUsers] = useState([]);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <header>
+        <nav
+          className="navbar navbar-expand-lg bg-body-tertiary"
+          data-bs-theme="dark"
+        >
+          <div className="container-fluid">
+            <Link className="navbar-brand" href="#">
+              eWebsite
+            </Link>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <NavLink className="nav-link" to={`/`}>
+                    Accueil
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to={`/contacts`}>
+                    Contacts
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <main className="container">
+        <div className="row my-3">
+          <div className="col-10 offset-1 rounded p-3 bg-dark text-light">
+            <AppContext.Provider value={{ users: users, setUsers: setUsers }}>
+              <Outlet />
+            </AppContext.Provider>
+          </div>
+        </div>
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
