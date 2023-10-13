@@ -12,10 +12,6 @@ const Home = () => {
     });
   }, []);
 
-  const addProduct = () => {
-    navigate("/add");
-  };
-
   return (
     <main>
       <h2>Home Page</h2>
@@ -32,8 +28,6 @@ const Home = () => {
           <Link to={`/product/${product.id}`}>see more</Link>
         </div>
       ))}
-
-      <button onClick={addProduct}>Add Product</button>
     </main>
   );
 };

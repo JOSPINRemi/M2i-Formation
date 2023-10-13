@@ -13,6 +13,15 @@ const ProductDetails = () => {
   }, [id]);
 
   const addToCart = () => {
+    let userCart = [];
+    if (localStorage.getItem("cart")) {
+      userCart = JSON.parse(localStorage.getItem("cart"));
+      userCart.push(product);
+      localStorage.setItem("cart", JSON.stringify(userCart));
+    } else {
+      userCart.push(product);
+      localStorage.setItem("cart", JSON.stringify(userCart));
+    }
     console.log(`${product.name} added to cart`);
   };
 

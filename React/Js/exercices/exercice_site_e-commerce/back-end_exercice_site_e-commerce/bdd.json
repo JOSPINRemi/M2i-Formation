@@ -1,14 +1,16 @@
 {
-  "users": [{
-    "username": "john",
-    "password": "adminadmin",
-    "status": "admin"
-  }, 
-  {"username": "matt",
-  "password": "password",
-  "status": "consumer"
-  }
-],
+  "users": [
+    {
+      "username": "john",
+      "password": "adminadmin",
+      "status": "admin"
+    },
+    {
+      "username": "matt",
+      "password": "password",
+      "status": "consumer"
+    }
+  ],
   "products": [
     {
       "id": 1,
@@ -30,6 +32,13 @@
       "img": "https://placehold.co/300x200",
       "description": "description",
       "price": 20
+    },
+    {
+      "name": "product4",
+      "img": "https://placehold.co/300x200",
+      "description": "description",
+      "price": 30,
+      "id": 4
     }
   ]
 }

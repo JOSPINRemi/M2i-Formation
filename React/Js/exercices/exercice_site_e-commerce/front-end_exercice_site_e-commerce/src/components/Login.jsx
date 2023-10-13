@@ -23,7 +23,6 @@ const Login = () => {
 
   const formHandler = (e) => {
     e.preventDefault();
-    console.log("-bouton appuyé-");
     users.map((user) => {
       if (
         user.username === usernameRef.current.value &&
