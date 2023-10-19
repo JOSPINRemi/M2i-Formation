@@ -1,37 +1,38 @@
 import { useDispatch, useSelector } from "react-redux";
-import SignForm from "../auth/SignForm";
-import { setAuthMode } from "../auth/authSlice";
-import Modal from "./Modal";
+import { removeUser, setAuthMode } from "../auth/authSlice";
+
+import { setFormMode } from "../albums/albumItemsSlice";
 
 const NavBar = () => {
   const user = useSelector((state) => state.auth.user);
-  const authMode = useSelector((state) => state.auth.authMode);
   const dispatch = useDispatch();
 
   return (
     <>
-      {authMode && (
-        <Modal onClose={() => dispatch(setAuthMode(""))}>
-          <SignForm />
-        </Modal>
-      )}
       <nav
         className="navbar navbar-expand-lg bg-body-tertiary"
         data-bs-theme="dark"
       >
         <div className="container-fluid">
           <span className="navbar-brand">
-            <i className="bi bi-globe"></i>eRecipes
+            <i className="bi bi-globe"></i>eAlbums
           </span>
+          {user && (
+            <button
+              onClick={() => dispatch(setFormMode("add"))}
+              className="ms-auto me-5 btn btn-success"
+            >
+              Ajouter un album
+            </button>
+          )}
+
           <button
             onClick={() =>
-              !user
-                ? dispatch(setAuthMode("Se connecter"))
-                : dispatch(removeUser())
+              !user ? dispatch(setAuthMode("Sign in")) : dispatch(removeUser())
             }
-            className="ms-auto btn btn-info"
+            className="me-0 btn btn-info"
           >
-            {user ? "Déconexion" : "Se connecter"}
+            {user ? "Déconnexion" : "Se connecter"}
           </button>
         </div>
       </nav>

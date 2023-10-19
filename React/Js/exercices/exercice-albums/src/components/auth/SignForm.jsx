@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setUser, setAuthMode } from "./authSlice";
+import { setAuthMode, signUp, signIn } from "./authSlice";
 import { useRef } from "react";
-import { SIGN_UP_URL, SIGN_IN_URL } from "../../fireBaseConfig";
 
 const SignForm = () => {
   const authMode = useSelector((state) => state.auth.authMode);
@@ -22,9 +21,10 @@ const SignForm = () => {
       returnSecureToken: true,
     };
 
-    const URL = authMode === "Se connecter" ? SIGN_IN_URL : SIGN_UP_URL;
+    authMode === "Sign in"
+      ? dispatch(signIn(credentials))
+      : dispatch(signUp(credentials));
 
-    dispatch(setUser({ url: URL, credentials: credentials }));
     dispatch(setAuthMode(""));
   };
 

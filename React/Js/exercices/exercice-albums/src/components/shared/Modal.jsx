@@ -1,3 +1,4 @@
+import classes from "./Modal.module.css";
 
 const Modal = (props) => {
   const handleBackgroundClick = () => {
@@ -5,9 +6,9 @@ const Modal = (props) => {
   };
 
   return (
-    <div>
-      <div >
-        <button onClick={handleBackgroundClick}>
+    <div className={classes.modal}>
+      <div className={classes.modalContent}>
+        <button onClick={handleBackgroundClick} className="btn btn-danger">
           X
         </button>
         {props.children}
