@@ -1,6 +1,6 @@
-import { useRef } from "react";
-import { useDispatch } from "react-redux";
-import { postAlbum, setFormMode } from "./albumItemsSlice";
+import { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { editAlbum, setFormMode } from "./albumItemsSlice";
 
 const EditAlbumForm = () => {
   const dispatch = useDispatch();
@@ -10,9 +10,26 @@ const EditAlbumForm = () => {
   const scoreRef = useRef();
   const coverURLRef = useRef();
 
+  const selectedAlbum = useSelector((state) => state.albums.selectedAlbum);
+
+  useEffect(() => {
+    if (selectedAlbum) {
+      titleRef.current.value = selectedAlbum.title;
+      releaseDateRef.current.value = selectedAlbum.releaseDate;
+      artistRef.current.value = selectedAlbum.artist;
+      scoreRef.current.value = selectedAlbum.score;
+      coverURLRef.current.value = selectedAlbum.coverURL;
+    }
+  }, [
+    selectedAlbum.title,
+    selectedAlbum.releaseDate,
+    selectedAlbum.artist,
+    selectedAlbum.score,
+    selectedAlbum.coverURL,
+  ]);
+
   const submitFormHandler = (event) => {
     event.preventDefault();
-
     const newAlbum = {
       title: titleRef.current.value,
       releaseDate: releaseDateRef.current.value,
@@ -20,8 +37,7 @@ const EditAlbumForm = () => {
       score: +scoreRef.current.value,
       coverURL: coverURLRef.current.value,
     };
-
-    dispatch(postAlbum(newAlbum));
+    dispatch(editAlbum(newAlbum));
     dispatch(setFormMode(""));
   };
 
@@ -74,9 +90,6 @@ const EditAlbumForm = () => {
           </label>
           <input
             type="number"
-            min={0}
-            max={5}
-            defaultValue={0}
             name="score"
             id="score"
             className="form-control"
@@ -97,7 +110,7 @@ const EditAlbumForm = () => {
             required
           />
         </div>
-        <button type="submit">Ajouter un album</button>
+        <button type="submit">Editer l'album</button>
       </form>
     </>
   );

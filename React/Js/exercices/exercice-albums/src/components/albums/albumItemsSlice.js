@@ -36,17 +36,41 @@ export const postAlbum = createAsyncThunk(
   }
 );
 
+export const editAlbum = createAsyncThunk(
+  "albumItems/editAlbum",
+  async (selectedAlbum) => {
+    const token = localStorage.getItem("token");
+    const response = await fetch(
+      `${BASE_DB_URL}/albums/${selectedAlbum.id}.json?auth=${token}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(selectedAlbum),
+      }
+    );
+    const data = await response.json();
+    album = {
+      id: data.name,
+      ...selectedAlbum,
+    };
+    return album;
+  }
+);
+
 export const deleteAlbum = createAsyncThunk(
   "albumItems/deleteAlbum",
   async (selectedAlbum) => {
     const token = localStorage.getItem("token");
     const response = await fetch(
-      `${BASE_DB_URL}/albums/${selectedAlbum}.json?auth=${token}`,
+      `${BASE_DB_URL}/albums/${selectedAlbum.id}.json?auth=${token}`,
       {
         method: "DELETE",
       }
     );
     const data = await response.json();
+    return data.name;
   }
 );
 
@@ -74,8 +98,27 @@ const albumItemsSlice = createSlice({
     builder.addCase(postAlbum.fulfilled, (state, action) => {
       state.albums.push(action.payload);
     });
+    builder.addCase(editAlbum.fulfilled, (state, action) => {
+      let foundAlbum = state.albums.find(
+        (album) => album.id === action.payload.id
+      );
+      if (foundAlbum) {
+        state.albums = [
+          ...state.albums.filter((a) => a.id !== action.payload.id),
+          action.payload,
+        ];
+      }
+    });
+    builder.addCase(deleteAlbum.fulfilled, (state, action) => {
+      let foundAlbum = state.albums.find(
+        (album) => album.id === action.payload
+      );
+      if (foundAlbum) {
+        state.albums = state.albums.filter((a) => a.id !== action.payload);
+      }
+    });
   },
 });
 
-export const { setFormMode } = albumItemsSlice.actions;
+export const { setFormMode, setSelectedAlbum } = albumItemsSlice.actions;
 export default albumItemsSlice.reducer;

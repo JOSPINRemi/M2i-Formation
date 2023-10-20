@@ -2,7 +2,7 @@ import greyStar from "../../assets/grey_star.jpg";
 import yelloStar from "../../assets/yellow_star.jpg";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setFormMode } from "./albumItemsSlice";
+import { setSelectedAlbum, setFormMode } from "./albumItemsSlice";
 
 const AlbumItemDisplay = (props) => {
   const dispatch = useDispatch();
@@ -38,13 +38,17 @@ const AlbumItemDisplay = (props) => {
   };
 
   const editAlbumHandler = () => {
+    console.log("editAlbumHandler");
     dispatch(setSelectedAlbum(album));
     dispatch(setFormMode("edit"));
+    console.log("EditMode");
   };
 
   const deleteAlbumHandler = () => {
+    console.log("deleteAlbumHandler");
     dispatch(setSelectedAlbum(album));
     dispatch(setFormMode("delete"));
+    console.log("DeleteMode");
   };
 
   return (
@@ -72,7 +76,7 @@ const AlbumItemDisplay = (props) => {
               <button
                 type="button"
                 className="btn btn-warning"
-                onClick={() => editAlbumHandler}
+                onClick={editAlbumHandler}
                 // onClick={() => {
                 //   alert("Editing mode isn't yet implemented");
                 // }}
@@ -82,7 +86,7 @@ const AlbumItemDisplay = (props) => {
               <button
                 type="button"
                 className="btn btn-danger"
-                onClick={() => deleteAlbumHandler}
+                onClick={deleteAlbumHandler}
                 // onClick={() => {
                 //   alert("Deleting mode isn't yet implemented");
                 // }}
