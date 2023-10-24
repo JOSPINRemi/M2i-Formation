@@ -5,28 +5,24 @@ export class Morpion {
       [null, null, null],
       [null, null, null],
     ];
+    this.playerTurn = true;
   }
 
   displayGrid() {
     for (let i = 0; i < this.grid.length; i++) {
-      //   for (let j = 0; j < this.grid[0].length; j++) {
-      //     console.log(this.grid[i][j]);
-      //   }
       console.log(this.grid[i]);
     }
   }
 
-  playerMove(line, column, icon) {
-    this.grid[line][column] = icon;
+  playerMove(line, column) {
+    this.grid[line][column] = this.playerTurn ? "X" : "O";
+    this.playerTurn = !this.playerTurn;
   }
 
   isWon() {
-    for (let i = 0; i < this.grid.length; i++) {
-      for (let j = 0; j < this.grid[0].length; j++) {
-        if (this.grid[i][j] === null) {
-          return false;
-        }
-      }
-    }
+    // for (let i = 0; i < this.grid.length; i++) {
+    //   for (let j = 0; j < this.grid[i].length; j++) {}
+    // }
+    return false;
   }
 }
