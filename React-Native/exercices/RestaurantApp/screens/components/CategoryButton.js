@@ -11,8 +11,8 @@ export default function CategoryButton({title, onPress, bgColor}) {
           justifyContent: 'center',
           alignItems: 'center',
           borderRadius: 25,
-          backgroundColor: 'black',
-          // backgroundColor: {bgColor},
+          backgroundColor: bgColor,
+          margin: 5,
         }}>
         <Text style={styles.text}>{title}</Text>
       </View>

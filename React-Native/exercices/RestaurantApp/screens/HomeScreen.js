@@ -1,8 +1,8 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
+import {FlatList, StyleSheet, View} from 'react-native';
 import {CATEGORIES} from '../projet/data/data.js';
 import CategoryButton from './components/CategoryButton.js';
-import {useNavigation} from '@react-navigation/native';
 
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -12,13 +12,10 @@ export default function HomeScreen() {
         data={CATEGORIES}
         renderItem={({item}) => {
           return (
-            // <View>
-            //   <Text>{item.title}</Text>
-            // </View>
             <CategoryButton
               title={item.title}
               bgColor={item.color}
-              onPress={() => navigation.navigate('')}
+              onPress={() => navigation.navigate('Meals', {id: item.id})}
             />
           );
         }}
