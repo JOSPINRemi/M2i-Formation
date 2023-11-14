@@ -5,6 +5,7 @@ import {Provider} from 'react-redux';
 import {StyleSheet} from 'react-native';
 import HomeScreen from './screens/HomeScreen';
 import PokemonListScreen from './screens/PokemonListScreen';
+import PokemonDetailsScreen from './screens/PokemonDetailsScreen';
 import PokedexScreen from './screens/PokedexScreen';
 import store from './store.js';
 
@@ -21,6 +22,10 @@ export default function App() {
             options={{headerShown: false}}
           />
           <Stack.Screen name="PokemonList" component={PokemonListScreen} />
+          <Stack.Screen
+            name="PokemonDetails"
+            component={PokemonDetailsScreen}
+          />
           <Stack.Screen name="Pokedex" component={PokedexScreen} />
         </Stack.Navigator>
       </NavigationContainer>

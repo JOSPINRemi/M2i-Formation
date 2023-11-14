@@ -1,29 +1,40 @@
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {fetchPokemons, fetchPokemon} from './Pokemons/pokemonsSlice';
+import {fetchPokemonURLLIst, fetchPokemons} from './Pokemons/pokemonsSlice';
+import Card from './components/Card';
 
 export default function PokemonListScreen() {
   const dispatch = useDispatch();
-  const pokemonList = useSelector(state => state.pokemons.pokemonList);
+  const pokemonURLList = useSelector(state => state.pokemons.pokemonURLList);
 
   useEffect(() => {
-    dispatch(fetchPokemons());
-    // console.log(pokemonList);
+    dispatch(fetchPokemonURLLIst());
+    // console.log(pokemonURLList);
   }, []);
 
   useEffect(() => {
-    for (let i = 0; i < pokemonList.length; i++) {
-      dispatch(fetchPokemon(pokemonList[i].url));
+    if (pokemonURLList.length > 1) {
+      const urlList = pokemonURLList.map(el => el.url);
+      // console.log('urlList');
+      // console.log(urlList);
+      dispatch(fetchPokemons(urlList));
     }
-    // console.log(pokemons);
-  }, [pokemonList]);
+  }, [pokemonURLList]);
 
   const pokemons = useSelector(state => state.pokemons.pokemons);
+  console.log(pokemons);
   return (
     <View>
-      {/* <FlatList data={pokemons} /> */}
-      <Text>{pokemons.name}</Text>
+      <FlatList
+        data={pokemons}
+        renderItem={({item}) => {
+          return <Card item={item} />;
+        }}
+        keyExtractor={(item, index) => {
+          return item.id;
+        }}
+      />
     </View>
   );
 }
