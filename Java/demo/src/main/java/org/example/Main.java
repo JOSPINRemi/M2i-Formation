@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.array.Array;
 import org.example.operator.Operator;
 import org.example.readFromConsole.ReadFromConsole;
 import org.example.structure.Structure;
@@ -19,6 +20,7 @@ public class Main {
 
 //        Structure2.getBoucleFor();
 //        Structure2.getWhile();
-        Structure2.getBreakAndContinue();
+//        Structure2.getBreakAndContinue();
+        Array.getArray();
     }
 }
