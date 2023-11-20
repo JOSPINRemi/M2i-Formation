@@ -1,9 +1,6 @@
 package org.example;
 
-import org.example.exercice2.*;
-import org.example.exercice3.*;
-import org.example.exercice3.Number;
-import org.example.exercice5.Number5;
+import org.example.chaineCaractere.chaineCaractere;
 
 
 public class Main {
@@ -55,6 +52,12 @@ public class Main {
 //        TODO: Revoir le code de l'exo
 //        Number5.achat();
 
-
+//        chaineCaractere.exoComptageMot();
+//        chaineCaractere.exoComptageOccurence();
+        chaineCaractere.anagramme("navire", "amerrir");
+        chaineCaractere.anagramme("avenir", "navire");
+//        chaineCaractere.palindrome("test");
+//        chaineCaractere.palindrome("kayak");
+        chaineCaractere.pyramide();
     }
 }
