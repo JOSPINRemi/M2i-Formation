@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.array.Array;
+import org.example.array.ArrayMatrix;
 import org.example.operator.Operator;
 import org.example.readFromConsole.ReadFromConsole;
 import org.example.string.ChaineCharactere;
@@ -26,6 +27,9 @@ public class Main {
 
 //        ChaineCharactere.getMethodString();
 //        ChaineCharactere.getComparaisonString();
-        ChaineCharactere.main();
+//        ChaineCharactere.main();
+
+//        ArrayMatrix.getMatrix();
+        ArrayMatrix.getMatrix2();
     }
 }
