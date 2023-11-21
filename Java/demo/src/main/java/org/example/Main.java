@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.array.Array;
 import org.example.array.ArrayMatrix;
+import org.example.function.DemoFunction;
 import org.example.operator.Operator;
 import org.example.readFromConsole.ReadFromConsole;
 import org.example.string.ChaineCharactere;
@@ -30,6 +31,8 @@ public class Main {
 //        ChaineCharactere.main();
 
 //        ArrayMatrix.getMatrix();
-        ArrayMatrix.getMatrix2();
+//        ArrayMatrix.getMatrix2();
+
+        DemoFunction.getFunction();
     }
 }
