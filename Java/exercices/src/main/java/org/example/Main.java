@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.array.ArrayMatrix;
 import org.example.chaineCaractere.chaineCaractere;
 
 
@@ -58,6 +59,10 @@ public class Main {
 //        chaineCaractere.anagramme("avenir", "navire");
 //        chaineCaractere.palindrome("test");
 //        chaineCaractere.palindrome("kayak");
-        chaineCaractere.pyramide();
+//        chaineCaractere.pyramide();
+
+//        ArrayMatrix.exo8_1();
+//        ArrayMatrix.exo8_2();
+        ArrayMatrix.exo8_3();
     }
 }
