@@ -54,8 +54,8 @@ public class Main {
 
 //        chaineCaractere.exoComptageMot();
 //        chaineCaractere.exoComptageOccurence();
-        chaineCaractere.anagramme("navire", "amerrir");
-        chaineCaractere.anagramme("avenir", "navire");
+//        chaineCaractere.anagramme("navire", "amerrir");
+//        chaineCaractere.anagramme("avenir", "navire");
 //        chaineCaractere.palindrome("test");
 //        chaineCaractere.palindrome("kayak");
         chaineCaractere.pyramide();
