@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.array.ArrayMatrix;
 import org.example.chaineCaractere.chaineCaractere;
+import org.example.function.Function;
 
 
 public class Main {
@@ -63,6 +64,11 @@ public class Main {
 
 //        ArrayMatrix.exo8_1();
 //        ArrayMatrix.exo8_2();
-        ArrayMatrix.exo8_3();
+//        ArrayMatrix.exo8_3();
+
+//        Function.exo1();
+//        Function.exo2();
+//        Function.exo3();
+        Function.exo4();
     }
 }
