@@ -3,6 +3,9 @@ package org.example;
 import org.example.array.ArrayMatrix;
 import org.example.chaineCaractere.chaineCaractere;
 import org.example.function.Function;
+import org.example.function.Recursivity;
+
+import java.util.Scanner;
 
 
 public class Main {
@@ -69,6 +72,8 @@ public class Main {
 //        Function.exo1();
 //        Function.exo2();
 //        Function.exo3();
-        Function.exo4();
+//        Function.exo4();
+
+        Recursivity.exoFactorielle();
     }
 }
