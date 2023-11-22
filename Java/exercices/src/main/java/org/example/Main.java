@@ -4,11 +4,24 @@ import org.example.array.ArrayMatrix;
 import org.example.chaineCaractere.chaineCaractere;
 import org.example.function.Function;
 import org.example.function.Recursivity;
+import org.example.poo.tp_class.Chaise;
+import org.example.poo.tp_class_heritage.*;
+import org.example.poo.tp_heritage.Compte;
+import org.example.poo.tp_heritage.CompteEpargne;
+import org.example.poo.tp_heritage.ComptePayant;
+import org.example.poo.tp_heritage.CompteSimple;
 
 import java.util.Scanner;
 
 
 public class Main {
+
+    public static void displayChaise(Chaise chaise) {
+        System.out.println("------------------------------------------ Affichage d'un nouvel objet ------------------------------------------");
+        System.out.println("Je suis une Chaise, avec " + chaise.getNbPieds() + " pieds en " + chaise.getMatériaux() + " et de couleur " + chaise.getCouleur());
+        System.out.println("-----------------------------------------------------------------------------------------------------------------");
+    }
+
     public static void main(String[] args) {
 //        Exercice 2
 //        Exercice 2.3
@@ -74,6 +87,60 @@ public class Main {
 //        Function.exo3();
 //        Function.exo4();
 
-        Recursivity.exoFactorielle();
+//        Recursivity.exoFactorielle();
+
+        /*Chaise chaise = new Chaise(4, "Bleue", "Bois");
+        displayChaise(chaise);
+        Chaise chaise1 = new Chaise(4, "Blanche", "métal");
+        displayChaise(chaise1);
+        Chaise chaise2 = new Chaise(1, "Tansparente", "Pléxiglas");
+        displayChaise(chaise2);*/
+
+        /*Person person = new Person();
+        person.sayHello();
+        Student student = new Student();
+        student.setAge(15);
+        student.GoToClasses();
+        student.sayHello();
+        student.DisplayAge();
+        Teacher teacher = new Teacher();
+        teacher.setAge(40);
+        teacher.sayHello();
+        teacher.Explain();*/
+
+        /*Apartment apartment = new Apartment();
+        apartment.getDoor().setColor("bleue");
+        Person2 person2 = new Person2("Thomas", apartment);
+        person2.Display();*/
+
+        /*Compte compte = new Compte(100);
+        System.out.println(compte);
+        compte.retrait(150);
+        System.out.println(compte);
+        compte.versement(1_000);
+        System.out.println(compte);
+
+        CompteSimple compteSimple = new CompteSimple(100, 10);
+        System.out.println(compteSimple);
+        compteSimple.retrait(150);
+        System.out.println(compteSimple);
+        compteSimple.versement(1_000);
+        System.out.println(compteSimple);
+
+        CompteEpargne compteEpargne = new CompteEpargne(100, 15);
+        System.out.println(compteEpargne);
+        compteEpargne.retrait(150);
+        System.out.println(compteEpargne);
+        compteEpargne.versement(1_000);
+        System.out.println(compteEpargne);
+        compteEpargne.calculInteret();
+        System.out.println(compteEpargne);*/
+
+        ComptePayant comptePayant = new ComptePayant(100);
+        System.out.println(comptePayant);
+        comptePayant.retrait(150);
+        System.out.println(comptePayant);
+        comptePayant.versement(1_000);
+        System.out.println(comptePayant);
     }
 }
