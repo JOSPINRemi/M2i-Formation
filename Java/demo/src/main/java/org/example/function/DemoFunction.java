@@ -12,7 +12,8 @@ public class DemoFunction {
         System.out.println(result);
         result = sum(5, 8);
         System.out.println(result);
-        double result1 = sum(45, 98, 12547, 548, 48);
+        String[] tab = new String[10];
+        double result1 = sum(tab, 45, 98, 12547, 548, 48);
         System.out.println(result1);
 
     }
