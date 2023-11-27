@@ -20,7 +20,7 @@ public class Demo {
         do {
             System.out.println("1 - Ajouter un client");
             System.out.println("2 - Afficher la liste des clients");
-            System.out.println("3 - Affihcer les réservations d'un client");
+            System.out.println("3 - Afficher les réservations d'un client");
             System.out.println("4 - Ajouter une réservation");
             System.out.println("5 - Annuler une réservation");
             System.out.println("6 - Afficher la liste des réservations");
@@ -72,15 +72,54 @@ public class Demo {
                         System.out.println("Le client avec le numéro de téléphone " + phoneNumber + " n'a pas de réservations");
                     }
                     break;
-//                TODO: Créer le cas pour Ajouter une réservation
-                /*case 4:
-                    break;*/
-//                TODO: Créer le cas pour Annuler une réservation
-                /*case 5:
-                    break;*/
-//                TODO: Créer le cas pour Afficher la liste des réservations
-                /*case 6:
-                    break;*/
+                case 4:
+                    System.out.println("Saisir votre numéro client");
+                    int numClient = scanner.nextInt();
+                    System.out.println("Saisir le nombre d'occupant");
+                    int nbOccupant = scanner.nextInt();
+                    Client selectedClient = null;
+                    clientExists = false;
+                    boolean spareRoom = false;
+                    for (Client client : hotel.getClients()) {
+                        if (client.getId() == numClient) {
+                            selectedClient = client;
+                            clientExists = true;
+                            break;
+                        }
+                    }
+                    if (!clientExists) {
+                        System.out.println("Le client " + numClient + " n'est pas enregistré\n");
+                    } else {
+                        for (Chambre chambre : hotel.getChambres()) {
+                            if (chambre.getStatut().equalsIgnoreCase("libre") && chambre.getCapacite() >= nbOccupant) {
+                                chambre.setStatut("occupée");
+                                hotel.addReservation(new Reservation("validé", selectedClient, chambre));
+                                spareRoom = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (!spareRoom) {
+                        System.out.println("Aucune chambre libre pour les critères recherchés :\nnombre d'occupant = " + nbOccupant + "\n");
+                    } else {
+                        System.out.println("La réservation du client " + numClient + " pour une chambre " + nbOccupant + " personne(s) a été effectuée");
+                    }
+                    break;
+                case 5:
+                    System.out.println("Saisir le numéro de réservation à annuler");
+                    int canceledResNum = scanner.nextInt();
+                    for (Reservation reservation : hotel.getReservations()) {
+                        if (reservation.getNumero() == canceledResNum) {
+                            reservation.setStatut("annulée");
+                            reservation.getChambre().setStatut("libre");
+                        }
+                    }
+                    break;
+                case 6:
+                    for (Reservation reservation : hotel.getReservations()) {
+                        System.out.println(reservation);
+                    }
+                    break;
                 case 0:
                     System.out.println("Merci d'avoir utilisé mon service de gestion d'hôtel");
                     break;

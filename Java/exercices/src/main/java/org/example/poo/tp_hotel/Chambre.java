@@ -1,24 +1,25 @@
 package org.example.poo.tp_hotel;
 
 public class Chambre {
-    private int numéro;
+    private static int counter;
+    private int numero;
     private String statut;
     private float tarif;
     private int capacite;
 
-    public Chambre(int numéro, String statut, float tarif, int capacite) {
-        this.numéro = numéro;
+    {
+        counter++;
+    }
+
+    public Chambre(String statut, float tarif, int capacite) {
+        this.numero = counter;
         this.statut = statut;
         this.tarif = tarif;
         this.capacite = capacite;
     }
 
-    public int getNuméro() {
-        return numéro;
-    }
-
-    public void setNuméro(int numéro) {
-        this.numéro = numéro;
+    public int getNumero() {
+        return numero;
     }
 
     public String getStatut() {
@@ -48,7 +49,7 @@ public class Chambre {
     @Override
     public String toString() {
         return "Chambre{" +
-                "numéro=" + numéro +
+                "numéro=" + numero +
                 ", statut='" + statut + '\'' +
                 ", tarif=" + tarif +
                 ", capacite=" + capacite +

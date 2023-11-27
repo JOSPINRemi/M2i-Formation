@@ -1,13 +1,18 @@
 package org.example.poo.tp_hotel;
 
 public class Reservation {
+    private static int counter;
     private int numero;
     private String statut;
     private Client client;
     private Chambre chambre;
 
-    public Reservation(int numero, String statut, Client client, Chambre chambre) {
-        this.numero = numero;
+    {
+        counter++;
+    }
+
+    public Reservation(String statut, Client client, Chambre chambre) {
+        this.numero = counter;
         this.statut = statut;
         this.client = client;
         this.chambre = chambre;

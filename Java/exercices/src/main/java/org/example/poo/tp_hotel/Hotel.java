@@ -11,7 +11,10 @@ public class Hotel {
 
     public Hotel(String name) {
         this.name = name;
-        this.chambres = new Chambre[10];
+        this.chambres = new Chambre[20];
+        for (int i = 0; i < chambres.length; i++) {
+            chambres[i] = new Chambre("libre", new Random().nextFloat(), new Random().nextInt(10));
+        }
         this.reservations = new Reservation[0];
         this.clients = new Client[0];
     }
@@ -65,5 +68,14 @@ public class Hotel {
         }
         tmp[tmp.length - 1] = client;
         clients = tmp;
+    }
+
+    public void addReservation(Reservation reservation) {
+        Reservation[] tmp = new Reservation[reservations.length + 1];
+        for (int i = 0; i < reservations.length; i++) {
+            tmp[i] = reservations[i];
+        }
+        tmp[tmp.length - 1] = reservation;
+        reservations = tmp;
     }
 }
