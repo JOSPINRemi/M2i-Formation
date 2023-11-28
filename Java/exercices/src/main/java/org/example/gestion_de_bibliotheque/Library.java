@@ -35,6 +35,7 @@ public class Library {
         return false;
     }
 
+    // FIXME: 28/11/2023 Change equals to contains
     public List<Book> findBooksByTitle(String title) {
         List<Book> foundBooks = new ArrayList<>();
         for (Book book : books) {
@@ -45,6 +46,7 @@ public class Library {
         return foundBooks;
     }
 
+    // FIXME: 28/11/2023 change equals to contains
     public List<Book> findBooksByAuthor(String author) {
         List<Book> foundBooks = new ArrayList<>();
         for (Book book : books) {

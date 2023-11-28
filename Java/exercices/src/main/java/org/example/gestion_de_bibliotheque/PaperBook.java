@@ -10,6 +10,7 @@ public class PaperBook extends Book {
         this.publisher = publisher;
     }
 
+    // FIXME: 28/11/2023 Concatenate parent method with child attributes
     @Override
     public String toString() {
         return "PaperBook{" +

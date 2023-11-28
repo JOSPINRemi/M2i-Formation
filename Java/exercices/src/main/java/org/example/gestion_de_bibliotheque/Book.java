@@ -1,7 +1,9 @@
 package org.example.gestion_de_bibliotheque;
 
+// FIXME: 28/11/2023 Make class abstract
 public class Book {
     private static int counter = 0;
+    // FIXME: 28/11/2023 Make id integer
     private String id;
     private String title;
     public String author;
