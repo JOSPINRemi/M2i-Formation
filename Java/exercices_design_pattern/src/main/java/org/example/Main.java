@@ -4,6 +4,9 @@ import org.example.exercice_abstractfactory.ItalianCuisineFactory;
 import org.example.exercice_abstractfactory.JapaneseCuisineFactory;
 import org.example.exercice_abstractfactory.Restaurant;
 import org.example.exercice_builder.Pizza;
+import org.example.exercice_observable.Product;
+import org.example.exercice_observable.StockManager;
+import org.example.exercice_observable.Supplier;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,9 +24,21 @@ public class Main {
         System.out.println(pizza);*/
 
 //        Exercice Abstract Factory
-        Restaurant restaurant = new Restaurant(new ItalianCuisineFactory());
+        /*Restaurant restaurant = new Restaurant(new ItalianCuisineFactory());
         restaurant.runPlate();
         restaurant.setCuisineFactory(new JapaneseCuisineFactory());
-        restaurant.runPlate();
+        restaurant.runPlate();*/
+
+//        Exercice Observable
+        Product product = new Product(10);
+        StockManager stockManager = new StockManager();
+        Supplier supplier = new Supplier();
+        product.registerObserver(stockManager);
+        product.registerObserver(supplier);
+
+        product.setStockLevel(15);
+
+        product.removeObserver(supplier);
+        product.setStockLevel(16);
     }
 }
