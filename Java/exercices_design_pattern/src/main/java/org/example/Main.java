@@ -4,6 +4,7 @@ import org.example.exercice_strategy.EconomicStrategy;
 import org.example.exercice_strategy.NavigationSystem;
 import org.example.exercice_strategy.OffroadStrategy;
 import org.example.exercice_strategy.RoadStrategy;
+import org.example.exercice_visiteur.*;
 
 import java.util.Scanner;
 
@@ -40,7 +41,7 @@ public class Main {
         product.setStockLevel(16);*/
 
 //        Exercice Strategy
-        NavigationSystem navigationSystem = new NavigationSystem();
+        /*NavigationSystem navigationSystem = new NavigationSystem();
         String choice;
         String destination;
 
@@ -69,6 +70,21 @@ public class Main {
                 }
                 default -> System.out.println("Invalid choice");
             }
-        } while (!choice.equals("0"));
+        } while (!choice.equals("0"));*/
+
+//        Demo Visiteur
+        Manager manager = new Manager();
+        Developer developer = new Developer();
+        Designer designer = new Designer();
+        EmployeeVisitor performanceEvaluator = new PerformanceEvaluator();
+        EmployeeVisitor salaryAdjuster = new SalaryAdjuster();
+        performanceEvaluator.visit(manager);
+        salaryAdjuster.visit(manager);
+
+        performanceEvaluator.visit(developer);
+        salaryAdjuster.visit(developer);
+
+        performanceEvaluator.visit(designer);
+        salaryAdjuster.visit(designer);
     }
 }
