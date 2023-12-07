@@ -1,17 +1,15 @@
 package org.example;
 
-import org.example.exercice_abstractfactory.ItalianCuisineFactory;
-import org.example.exercice_abstractfactory.JapaneseCuisineFactory;
-import org.example.exercice_abstractfactory.Restaurant;
-import org.example.exercice_builder.Pizza;
-import org.example.exercice_observable.Product;
-import org.example.exercice_observable.StockManager;
-import org.example.exercice_observable.Supplier;
+import org.example.exercice_strategy.EconomicStrategy;
+import org.example.exercice_strategy.NavigationSystem;
+import org.example.exercice_strategy.OffroadStrategy;
+import org.example.exercice_strategy.RoadStrategy;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
+    private static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
 //        Exercice builder
         /*Pizza pizza = new Pizza.Builder()
@@ -30,7 +28,7 @@ public class Main {
         restaurant.runPlate();*/
 
 //        Exercice Observable
-        Product product = new Product(10);
+        /*Product product = new Product(10);
         StockManager stockManager = new StockManager();
         Supplier supplier = new Supplier();
         product.registerObserver(stockManager);
@@ -39,6 +37,38 @@ public class Main {
         product.setStockLevel(15);
 
         product.removeObserver(supplier);
-        product.setStockLevel(16);
+        product.setStockLevel(16);*/
+
+//        Exercice Strategy
+        NavigationSystem navigationSystem = new NavigationSystem();
+        String choice;
+        String destination;
+
+        System.out.println("Where do you want to go ?");
+        destination = scanner.nextLine();
+        do {
+            System.out.println("1 -- RoadStrategy");
+            System.out.println("2 -- OffroadStrategy");
+            System.out.println("3 -- EconomicStrategy");
+            System.out.println("0 -- Quit");
+            choice = scanner.nextLine();
+            switch (choice) {
+                case "1" -> {
+                    navigationSystem.setNavigationStrategy(new RoadStrategy());
+                    navigationSystem.getNavigationStrategy().navigate(destination);
+                }
+                case "2" -> {
+                    navigationSystem.setNavigationStrategy(new OffroadStrategy());
+                    navigationSystem.getNavigationStrategy().navigate(destination);
+                }
+                case "3" -> {
+                    navigationSystem.setNavigationStrategy(new EconomicStrategy());
+                    navigationSystem.getNavigationStrategy().navigate(destination);
+                }
+                case "0" -> {
+                }
+                default -> System.out.println("Invalid choice");
+            }
+        } while (!choice.equals("0"));
     }
 }
