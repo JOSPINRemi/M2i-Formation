@@ -9,10 +9,15 @@ import org.example.demo_observable.Tablet;
 import org.example.demo_observable.WeatherStation;
 import org.example.demo_singleton.Person;
 import org.example.demo_singleton.Storage;
+import org.example.demo_strategy.CardPaymentStrategy;
+import org.example.demo_strategy.Order;
+import org.example.demo_strategy.PaypalStrategy;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
+    private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
 //        Demo Builder
         /*Voiture voiture = new Voiture.Builder()
@@ -36,7 +41,7 @@ public class Main {
         liste = Storage.getInstance().getPersonList();*/
 
 //        Demo Observable
-        WeatherStation weatherStation = new WeatherStation();
+        /*WeatherStation weatherStation = new WeatherStation();
         Phone phone = new Phone();
         Tablet tablet = new Tablet();
         weatherStation.registerObserver(phone);
@@ -46,6 +51,24 @@ public class Main {
 
         weatherStation.randomTemperature();
         weatherStation.removeObserver(tablet);
-        weatherStation.randomTemperature();
+        weatherStation.randomTemperature();*/
+
+//        Demo Strategy
+        Order order = new Order(1000);
+        String choice;
+
+        do {
+            System.out.println("1 -- Card");
+            System.out.println("2 -- Paypal");
+            System.out.println("0 -- Quit");
+            choice = scanner.nextLine();
+            switch (choice){
+                case "1" -> order.pay(new CardPaymentStrategy());
+                case "2" -> order.pay(new PaypalStrategy());
+                case "0" -> {}
+                default -> System.out.println("Invalid choice");
+            }
+        }while (!choice.equals("0"));
+
     }
 }
