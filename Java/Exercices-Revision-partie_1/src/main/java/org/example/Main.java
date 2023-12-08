@@ -7,17 +7,22 @@ import org.example.simulateur_zoo.factory.impl.LionFactory;
 
 public class Main {
     public static void main(String[] args) {
+//        Simulateur de zoo
         Zoo zoo = Zoo.getInstance();
         LionFactory lionFactory = new LionFactory();
-        Visitor visitor = new Visitor();
+        Visitor visitor = new Visitor("Albert");
 
         zoo.registerObserver(visitor);
 
-        // FIXME: 07/12/2023 Problème lors de la notification
-//        Ajouter un lion
+//        Add a lion
         zoo.addAnimal(lionFactory.createAnimal(new LionBuilder()
-                .name("leo")
+                .name("Leo")
                 .age(5)
+        ));
+
+//        Add a lion
+        zoo.addAnimal(lionFactory.createAnimal(new LionBuilder()
+                .name("Nala")
         ));
     }
 }
