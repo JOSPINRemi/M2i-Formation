@@ -24,6 +24,11 @@ public class Zoo implements Subject {
 
     public void addAnimal(Animal animal){
         this.animals.add(animal);
+        notifyObservers(animal);
+    }
+
+    public List<Animal> getAnimals() {
+        return animals;
     }
 
     @Override
@@ -39,5 +44,9 @@ public class Zoo implements Subject {
     @Override
     public void notifyObservers(Animal animal) {
         observers.forEach(observer -> observer.update(animal));
+    }
+
+    public List<Observer> getObservers() {
+        return observers;
     }
 }
