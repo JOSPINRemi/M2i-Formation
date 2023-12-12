@@ -40,3 +40,37 @@ SELECT * FROM adresse;
 SELECT personne.personne_id ,titre, nom, prenom, email, telephone, adresse_id, rue, ville, code_postal
 	FROM personne
 		JOIN adresse USING (personne_id);
+
+-- Question 4
+DELETE FROM adresse WHERE personne_id = 3;
+
+INSERT INTO personne (titre, prenom, nom, telephone, email)
+			VALUES
+					('Mr', 'Toto', 'Test', '0123456789', 'toto@test.com');
+-- Question 5
+DELETE FROM personne WHERE prenom = "toto";
+
+INSERT INTO adresse (personne_id, rue, ville, code_postal)
+			VALUE
+					(7, '4 av Horizon', "Villeneuve d'Ascq", 59650);
+-- Question 5 avec personne qui possède une adresse
+DELETE FROM adresse WHERE personne_id IN (SELECT personne_id FROM personne WHERE prenom = "toto");
+DELETE FROM personne WHERE prenom = "toto";
+
+INSERT INTO personne (titre, prenom, nom, telephone, email)
+			VALUES
+				("Mr", "Jean", "DUPONT", "0123456789", "jean.dupont@email.com"),
+				("Mme", "Angèle", "DUPONT", "0123456789", "angele.dupont@email.com");
+-- Question 6
+UPDATE personne
+	SET telephone = "0000000000"
+    WHERE nom = "dupont";
+
+-- Question 7
+SELECT * FROM personne ORDER BY nom DESC;
+
+-- Question 8
+SELECT * FROM personne ORDER BY titre;
+
+-- Question 9
+SELECT * FROM personne WHERE email = "jean.dupont@email.com";
