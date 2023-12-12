@@ -1,3 +1,4 @@
+USE exercices;
 -- Exercice 2
 DROP TABLES IF EXISTS compte_role, compte, role;
 
