@@ -107,3 +107,13 @@ SELECT nom, prenom
     WHERE age > 25;
 
 SELECT service_id, count(service_id) AS "nombre de salarie" FROM salarie GROUP BY service_id;
+
+SELECT service_id, COUNT(service_id) AS "nombre de salarie" FROM salarie GROUP BY service_id;
+
+SELECT * FROM salarie;
+
+SELECT * FROM salarie WHERE nom = "chirac"; 
+
+SELECT * FROM salarie WHERE salarie_id = 2; -- recherche par colonne indexe plus efficace
+
+SELECT service_id, avg(salaire) FROM salarie GROUP BY service_id HAVING avg(salaire) > 3000 LIMIT 0, 100;
