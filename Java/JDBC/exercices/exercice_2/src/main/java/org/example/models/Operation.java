@@ -5,7 +5,6 @@ public class Operation {
     private double montant;
     private OperationStatut statut;
 
-//    TODO Ajouter id du compte
     public Operation() {
     }
 

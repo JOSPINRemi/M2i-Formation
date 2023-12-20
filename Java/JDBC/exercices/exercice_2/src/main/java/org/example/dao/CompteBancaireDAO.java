@@ -33,7 +33,7 @@ public class CompteBancaireDAO extends BaseDAO<CompteBancaire> {
         int nbRows = statement.executeUpdate();
         resultSet = statement.getGeneratedKeys();
         if (resultSet.next()) {
-            element.setId(resultSet.getInt("id"));
+            element.setId(resultSet.getInt(1));
         }
         return nbRows == 1;
     }
@@ -72,7 +72,6 @@ public class CompteBancaireDAO extends BaseDAO<CompteBancaire> {
                         resultSet.getInt("solde"),
                         client
                 );
-                client.addCompte(compte);
             }
         }
         return compte;
@@ -92,7 +91,6 @@ public class CompteBancaireDAO extends BaseDAO<CompteBancaire> {
                         resultSet.getDouble("solde"),
                         client
                 );
-                client.addCompte(compte);
                 result.add(compte);
             }
         }

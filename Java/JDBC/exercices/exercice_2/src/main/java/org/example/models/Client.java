@@ -45,14 +45,6 @@ public class Client {
         this.id = id;
     }
 
-    public List<CompteBancaire> getComptes() {
-        return comptes;
-    }
-
-    public void addCompte(CompteBancaire compte) {
-        comptes.add(compte);
-    }
-
     public String getTelephone() {
         return telephone;
     }

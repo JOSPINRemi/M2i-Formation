@@ -43,14 +43,6 @@ public class CompteBancaire {
         this.client = client;
     }
 
-    public List<Operation> getOperations() {
-        return operations;
-    }
-
-    public void addOperation(Operation operation) {
-        operations.add(operation);
-    }
-
     @Override
     public String toString() {
         return "CompteBancaire{" +
@@ -58,5 +50,12 @@ public class CompteBancaire {
                 ", client=" + client +
                 ", operations=" + operations +
                 '}';
+    }
+
+    public void depot(double montant){
+        solde += montant;
+    }
+    public void retrait(double montant){
+        solde -= montant;
     }
 }

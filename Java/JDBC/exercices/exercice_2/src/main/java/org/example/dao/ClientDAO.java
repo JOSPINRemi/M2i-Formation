@@ -70,7 +70,7 @@ public class ClientDAO extends BaseDAO<Client> {
     @Override
     public List<Client> get() throws SQLException {
         List<Client> result = new ArrayList<>();
-        request = "SELECT * FROM person";
+        request = "SELECT * FROM client";
         statement = _connection.prepareStatement(request);
         resultSet = statement.executeQuery();
         while (resultSet.next()) {

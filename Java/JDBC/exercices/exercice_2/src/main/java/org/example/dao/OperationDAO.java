@@ -34,7 +34,7 @@ public class OperationDAO extends BaseDAO<Operation> {
         int nbRows = statement.executeUpdate();
         resultSet = statement.getGeneratedKeys();
         if (resultSet.next()) {
-            element.setNumero(resultSet.getInt("numero"));
+            element.setNumero(resultSet.getInt(1));
         }
         return nbRows == 1;
     }
@@ -65,7 +65,6 @@ public class OperationDAO extends BaseDAO<Operation> {
         statement = _connection.prepareStatement(request);
         statement.setInt(1, id);
         resultSet = statement.executeQuery();
-//        TODO addOperation dans compte
         if (resultSet.next()) {
             operation = new Operation(
                     resultSet.getInt("numero"),
@@ -82,7 +81,6 @@ public class OperationDAO extends BaseDAO<Operation> {
         request = "SELECT * FROM compte_bancaire";
         statement = _connection.prepareStatement(request);
         resultSet = statement.executeQuery();
-//        TODO addOperation dans compte
         while (resultSet.next()) {
             Operation operation = new Operation(
                     resultSet.getInt("numero"),
