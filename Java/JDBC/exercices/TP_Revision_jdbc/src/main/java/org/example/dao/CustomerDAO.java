@@ -1,6 +1,5 @@
 package org.example.dao;
 
-import jdk.jshell.spi.ExecutionControl;
 import org.example.entity.Customer;
 
 import java.sql.Connection;
@@ -18,22 +17,22 @@ public class CustomerDAO extends BaseDAO<Customer> {
     }
 
     @Override
-    public boolean update(Customer element) throws SQLException, ExecutionControl.NotImplementedException {
+    public boolean update(Customer element) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean delete(Customer element) throws SQLException, ExecutionControl.NotImplementedException {
+    public boolean delete(int id) throws SQLException {
         return false;
     }
 
     @Override
-    public Customer get(int id) throws SQLException, ExecutionControl.NotImplementedException {
+    public Customer get(int id) throws SQLException {
         return null;
     }
 
     @Override
-    public List<Customer> get() throws SQLException, ExecutionControl.NotImplementedException {
+    public List<Customer> get() throws SQLException {
         return null;
     }
 }

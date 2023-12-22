@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS tp_revision_jdbc;
 USE tp_revision_jdbc;
 
-DROP TABLE IF EXISTS customer_event,customer, event, event_location;
+DROP TABLE IF EXISTS customer_event, customer, event, event_location;
 
 CREATE TABLE IF NOT EXISTS event_location
 (

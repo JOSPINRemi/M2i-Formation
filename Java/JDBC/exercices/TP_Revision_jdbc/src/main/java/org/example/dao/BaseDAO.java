@@ -19,8 +19,10 @@ public abstract class BaseDAO <T> {
     }
 
     public abstract boolean save(T element) throws SQLException, ExecutionControl.NotImplementedException;
+
     public abstract boolean update(T element) throws SQLException, ExecutionControl.NotImplementedException;
-    public abstract boolean delete(T element) throws SQLException, ExecutionControl.NotImplementedException;
+
+    public abstract boolean delete(int id) throws SQLException, ExecutionControl.NotImplementedException;
 
     public abstract T get(int id) throws SQLException, ExecutionControl.NotImplementedException;
 
