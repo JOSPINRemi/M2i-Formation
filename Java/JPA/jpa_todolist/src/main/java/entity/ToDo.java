@@ -9,12 +9,15 @@ public class ToDo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String label;
+    @Enumerated(EnumType.STRING)
+    private ToDoStatus status;
 
     public ToDo() {
     }
 
-    public ToDo(String label) {
+    public ToDo(String label, ToDoStatus status) {
         this.label = label;
+        this.status = status;
     }
 
     public void setId(Long id) {
@@ -33,11 +36,20 @@ public class ToDo {
         this.label = label;
     }
 
+    public ToDoStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ToDoStatus status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "ToDo{" +
                 "id=" + id +
                 ", label='" + label + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

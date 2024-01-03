@@ -4,7 +4,9 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
     <persistence-unit name="jpa_todolist">
-        <description>Persistence pour demo jpa à M2i</description>
+        <description>Persistence pour jpa à M2i</description>
+
+        <class>entity.ToDo</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

@@ -1,10 +1,8 @@
-import service.IToDoListService;
 import service.ToDoListService;
+import util.IHM;
 
 public class Main {
     public static void main(String[] args) {
-        IToDoListService toDoListService = new ToDoListService();
-        String taskLabel = "test";
-        System.out.println(toDoListService.createAndSaveToDo(taskLabel));
+        new IHM(new ToDoListService()).start();
     }
 }
