@@ -1,9 +1,11 @@
 package util;
 
 import entity.ToDo;
+import entity.ToDoInfos;
 import entity.ToDoStatus;
 import service.IToDoListService;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -64,18 +66,51 @@ public class IHM {
                 status = ToDoStatus.PENDING;
                 break;
         }
-        ToDo newToDo = _toDoListService.createAndSaveToDo(todoLabel, status);
-        if (newToDo != null) {
-            System.out.println("La ToDO a correctement été crée avec l'id " + newToDo.getId());
-        } else {
-            System.out.println("Problème lors de la création de la ToDo");
+        System.out.print("Saisir la description de la ToDo : ");
+        String description = scanner.nextLine();
+        System.out.print("Saisir l'échéance de la ToDo : ");
+        String stringEcheance = scanner.nextLine();
+        Date echeance = Date.valueOf(stringEcheance);
+        System.out.println("Choisir la priorite de la ToDo :");
+        prioriteMenu();
+        choice = scanner.nextLine();
+        Integer priorite;
+        switch (choice){
+            case "2":
+                priorite = 2;
+                break;
+            case "3":
+                priorite = 3;
+                break;
+            default:
+                priorite = 1;
+                break;
+        }
+        ToDoInfos newToDoInfos = _toDoListService.createAndSaveToDoInfos(description, echeance, priorite);
+        if (newToDoInfos != null){
+            ToDo newToDo = _toDoListService.createAndSaveToDo(todoLabel, status, newToDoInfos);
+            if (newToDo != null) {
+                System.out.println("La ToDO a correctement été crée avec l'id " + newToDo.getId());
+            } else {
+                System.out.println("Problème lors de la création de la ToDo");
+            }
+        }
+        else {
+            System.out.println("Problème lors de l'enregistrement des infos de la ToDo");
         }
     }
 
     private void statusMenu() {
         for (int i = 0; i < ToDoStatus.values().length; i++) {
-            System.out.println(i+1 + " - " + ToDoStatus.values()[i]);
+            System.out.println(i + 1 + " - " + ToDoStatus.values()[i]);
         }
+        System.out.print("Choix : ");
+    }
+
+    private void prioriteMenu(){
+        System.out.println("1 - Faible");
+        System.out.println("2 - Moyenne");
+        System.out.println("3 - Urgente");
         System.out.print("Choix : ");
     }
 
@@ -87,8 +122,8 @@ public class IHM {
 
     private void completeToDo() {
         List<ToDo> todos = _toDoListService.readToDos();
-        for (ToDo toDo : todos){
-            if (toDo.getStatus() == ToDoStatus.PENDING){
+        for (ToDo toDo : todos) {
+            if (toDo.getStatus() == ToDoStatus.PENDING) {
                 System.out.println(toDo);
             }
         }
@@ -98,7 +133,12 @@ public class IHM {
         ToDo toDo = _toDoListService.readToDo(id);
         if (toDo != null) {
             toDo.setStatus(ToDoStatus.COMPLETED);
-            _toDoListService.updateToDo(toDo);
+            if (_toDoListService.updateToDo(toDo)) {
+                System.out.println("ToDo mise à jour");
+            }
+            else {
+                System.out.println("Erreur dans la mise à jour de la todo");
+            }
         } else {
             System.out.println("Aucune ToDo avec l'id : " + id);
         }
@@ -109,6 +149,12 @@ public class IHM {
         System.out.print("Saisir l'id de la ToDo à supprimer : ");
         Long id = scanner.nextLong();
         scanner.nextLine();
-        _toDoListService.deleteToDo(id);
+        if (_toDoListService.deleteToDo(id)){
+            System.out.println("ToDo supprimée");
+        }
+        else {
+            System.out.println("Erreur de la suppression de la ToDo");
+        }
+
     }
 }

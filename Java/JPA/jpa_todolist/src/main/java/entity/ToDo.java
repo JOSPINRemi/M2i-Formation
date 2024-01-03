@@ -7,10 +7,14 @@ import javax.persistence.*;
 public class ToDo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_todo")
     private Long id;
     private String label;
     @Enumerated(EnumType.STRING)
     private ToDoStatus status;
+    @OneToOne
+    @JoinColumn(name = "todo_infos_id", referencedColumnName = "id_infos_todo")
+    private ToDoInfos infos;
 
     public ToDo() {
     }
@@ -44,12 +48,21 @@ public class ToDo {
         this.status = status;
     }
 
+    public ToDoInfos getInfos() {
+        return infos;
+    }
+
+    public void setInfos(ToDoInfos infos) {
+        this.infos = infos;
+    }
+
     @Override
     public String toString() {
         return "ToDo{" +
                 "id=" + id +
                 ", label='" + label + '\'' +
                 ", status=" + status +
+                ", infos=" + infos +
                 '}';
     }
 }

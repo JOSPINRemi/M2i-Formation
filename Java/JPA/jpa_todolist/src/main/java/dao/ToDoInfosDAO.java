@@ -1,23 +1,23 @@
 package dao;
 
-import entity.ToDo;
+import entity.ToDoInfos;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
-public class ToDoDAO {
+public class ToDoInfosDAO {
     private static EntityManagerFactory _emf;
 
-    public ToDoDAO(EntityManagerFactory emf) {
+    public ToDoInfosDAO(EntityManagerFactory emf) {
         _emf = emf;
     }
 
-    public boolean save(ToDo toDo) {
+    public boolean save(ToDoInfos toDoInfos) {
         EntityManager em = _emf.createEntityManager();
         em.getTransaction().begin();
-        em.persist(toDo);
-        if (toDo.getId() != null) {
+        em.persist(toDoInfos);
+        if (toDoInfos.getId() != null) {
             em.getTransaction().commit();
             em.close();
             return true;
@@ -28,35 +28,35 @@ public class ToDoDAO {
         }
     }
 
-    public List<ToDo> get() {
+    public List<ToDoInfos> get() {
         EntityManager em = _emf.createEntityManager();
         em.getTransaction().begin();
-        List<ToDo> toDos = em.createQuery("SELECT t FROM ToDo t", ToDo.class).getResultList();
-        return toDos;
+        List<ToDoInfos> toDosInfos = em.createQuery("SELECT t FROM ToDo t", ToDoInfos.class).getResultList();
+        return toDosInfos;
     }
 
-    public ToDo get(Long id) {
+    public ToDoInfos get(Long id) {
         EntityManager em = _emf.createEntityManager();
         em.getTransaction().begin();
-        ToDo toDo = em.find(ToDo.class, id);
-        if (toDo != null) {
+        ToDoInfos toDoInfos = em.find(ToDoInfos.class, id);
+        if (toDoInfos != null) {
             em.getTransaction().commit();
         }
         else {
             em.getTransaction().rollback();
         }
         em.close();
-        return toDo;
+        return toDoInfos;
     }
 
-    public boolean update(ToDo toDo) {
+    public boolean update(ToDoInfos toDoInfos) {
         EntityManager em = _emf.createEntityManager();
         em.getTransaction().begin();
-        ToDo updateToDo = em.find(ToDo.class, toDo.getId());
-        updateToDo.setLabel(toDo.getLabel());
-        updateToDo.setStatus(toDo.getStatus());
-        updateToDo.setInfos(toDo.getInfos());
-        if (em.find(ToDo.class, toDo.getId()).equals(updateToDo)){
+        ToDoInfos updateToDoInfos = em.find(ToDoInfos.class, toDoInfos.getId());
+        updateToDoInfos.setDescription(toDoInfos.getDescription());
+        updateToDoInfos.setEcheance(toDoInfos.getEcheance());
+        updateToDoInfos.setPriorite(toDoInfos.getPriorite());
+        if (em.find(ToDoInfos.class, toDoInfos.getId()).equals(updateToDoInfos)){
             em.getTransaction().commit();
             em.close();
             return true;
@@ -67,10 +67,10 @@ public class ToDoDAO {
     public boolean remove(Long id) {
         EntityManager em = _emf.createEntityManager();
         em.getTransaction().begin();
-        ToDo toDo = em.find(ToDo.class, id);
-        if (toDo != null) {
-            em.remove(toDo);
-            if (em.find(ToDo.class, id) == null) {
+        ToDoInfos toDoInfos = em.find(ToDoInfos.class, id);
+        if (toDoInfos != null) {
+            em.remove(toDoInfos);
+            if (em.find(ToDoInfos.class, id) == null) {
                 em.getTransaction().commit();
                 em.close();
                 return true;
