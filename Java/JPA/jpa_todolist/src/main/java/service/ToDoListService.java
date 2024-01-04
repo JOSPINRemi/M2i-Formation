@@ -2,9 +2,11 @@ package service;
 
 import dao.ToDoDAO;
 import dao.ToDoInfosDAO;
+import dao.UserDAO;
 import entity.ToDo;
 import entity.ToDoInfos;
 import entity.ToDoStatus;
+import entity.User;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -15,12 +17,14 @@ public class ToDoListService implements IToDoListService {
     private EntityManagerFactory emf;
     private ToDoDAO toDoDAO;
     private ToDoInfosDAO toDoInfosDAO;
+    private UserDAO userDAO;
 
     public ToDoListService() {
         try {
             emf = Persistence.createEntityManagerFactory("jpa_todolist");
             toDoDAO = new ToDoDAO(emf);
             toDoInfosDAO = new ToDoInfosDAO(emf);
+            userDAO = new UserDAO(emf);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -91,5 +95,47 @@ public class ToDoListService implements IToDoListService {
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+    @Override
+    public User createAndSaveUser(String name, List<ToDo> toDos) {
+        User user = new User();
+        user.setName(name);
+        user.setToDos(toDos);
+        try {
+            if (userDAO.save(user)){
+                return user;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    @Override
+    public List<User> readUsers() {
+        try {
+            return userDAO.get();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public User readUser(Long id) {
+        try {
+            return userDAO.get(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public boolean deleteUser(Long id) {
+        try {
+            return userDAO.remove(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

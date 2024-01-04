@@ -15,6 +15,9 @@ public class ToDo {
     @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "todo_infos_id", referencedColumnName = "id_infos_todo")
     private ToDoInfos infos;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public ToDo() {
     }
@@ -54,6 +57,14 @@ public class ToDo {
 
     public void setInfos(ToDoInfos infos) {
         this.infos = infos;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

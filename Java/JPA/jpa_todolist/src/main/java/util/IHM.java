@@ -3,9 +3,11 @@ package util;
 import entity.ToDo;
 import entity.ToDoInfos;
 import entity.ToDoStatus;
+import entity.User;
 import service.IToDoListService;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,35 +23,106 @@ public class IHM {
 
     public void start() {
         do {
-            menu();
+            userMenu();
             choice = scanner.nextLine();
+
             switch (choice) {
                 case "1":
-                    createToDo();
+                    createUser();
                     break;
                 case "2":
-                    showToDos();
+                    showUserToDos();
                     break;
+
                 case "3":
-                    completeToDo();
+                    toDoMenu();
+                    switch (choice) {
+                        case "1":
+                            createToDo();
+                            break;
+                        case "2":
+                            showToDos();
+                            break;
+                        case "3":
+                            completeToDo();
+                            break;
+                        case "4":
+                            deleteToDo();
+                            break;
+                    }
                     break;
                 case "4":
-                    deleteToDo();
+                    deleteUser();
                     break;
             }
         } while (!choice.equals("0"));
         System.out.println("Merci d'avoir utilisé le service de gestion de ToDoList, au revoir");
     }
 
-    private void menu() {
+    private void userMenu() {
         System.out.println("## Menu Principal ##");
-        System.out.println("1 - Ajouter une tâche à la liste");
-        System.out.println("2 - Afficher toutes les tâches de la liste");
-        System.out.println("3 - Marquer une tâche comme terminée");
-        System.out.println("4 - Supprimer une tâche de la liste");
-        System.out.println("0 - Quitter l'application");
+        System.out.println("1 - Ajouter un utilisateur");
+        System.out.println("2 - Afficher toutes les tâches d'un utilisateur");
+        System.out.println("3 - Manager les tâches de l'utilisateur");
+        System.out.println("4 - Supprimer un utilisateur et toutes ses tâches");
         System.out.print("Choix : ");
     }
+
+    private void toDoMenu() {
+        System.out.println("## Menu ToDo ##");
+        System.out.println("1 - Ajouter une tâche à la liste");
+        System.out.println("3 - Marquer une tâche comme terminée");
+        System.out.println("4 - Supprimer une tâche de la liste");
+        System.out.print("Choix : ");
+    }
+
+    private void createUser() {
+        System.out.print("Saisir le nom de l'utilisateur : ");
+        String name = scanner.nextLine();
+        if (_toDoListService.createAndSaveUser(name, new ArrayList<>()) != null) {
+            System.out.println("Utilisateur créé avec succès");
+        } else {
+            System.out.println("Problème lors de la création de l'utilisateur");
+        }
+    }
+
+    private void showUserToDos() {
+        List<User> users = _toDoListService.readUsers();
+        if (users.isEmpty()) {
+            System.out.println("Aucun utilisateur enregisté");
+        } else {
+            users.forEach(System.out::println);
+            System.out.println("Saisir l'id de l'utilisateur dont vous voulez afficher les tâches");
+            Long userId = scanner.nextLong();
+            scanner.nextLine();
+            User user = _toDoListService.readUser(userId);
+            if (user == null) {
+                System.out.println("Aucun utilisateur avec l'id : " + userId);
+            } else {
+                List<ToDo> userTodos = _toDoListService.readToDos(userId);
+                if (userTodos == null) {
+                    System.out.println("Pas de tâche pour l'utilisateur " + user);
+                } else {
+                    userTodos.forEach(System.out::println);
+                }
+            }
+
+        }
+
+    }
+
+    private void deleteUser() {
+        System.out.print("Saisir l'id de l'utilisateur à supprimer :");
+        Long id = scanner.nextLong();
+        scanner.nextLine();
+        User user = _toDoListService.readUser(id);
+        if (user == null) {
+            System.out.println("Aucun utilisateur avec l'id : " + id);
+        } else {
+            _toDoListService.deleteUser(id);
+        }
+    }
+
 
     private void createToDo() {
         System.out.print("Saisir le label de la ToDo : ");
@@ -72,7 +145,7 @@ public class IHM {
         prioriteMenu();
         choice = scanner.nextLine();
         int priorite;
-        switch (choice){
+        switch (choice) {
             case "2":
                 priorite = 2;
                 break;
@@ -84,15 +157,14 @@ public class IHM {
                 break;
         }
         ToDoInfos newToDoInfos = _toDoListService.createAndSaveToDoInfos(description, echeance, priorite);
-        if (newToDoInfos != null){
+        if (newToDoInfos != null) {
             ToDo newToDo = _toDoListService.createAndSaveToDo(todoLabel, status, newToDoInfos);
             if (newToDo != null) {
                 System.out.println("La ToDO a correctement été crée avec l'id " + newToDo.getId());
             } else {
                 System.out.println("Problème lors de la création de la ToDo");
             }
-        }
-        else {
+        } else {
             System.out.println("Problème lors de l'enregistrement des infos de la ToDo");
         }
     }
@@ -104,7 +176,7 @@ public class IHM {
         System.out.print("Choix : ");
     }
 
-    private void prioriteMenu(){
+    private void prioriteMenu() {
         System.out.println("1 - Faible");
         System.out.println("2 - Moyenne");
         System.out.println("3 - Urgente");
@@ -113,10 +185,9 @@ public class IHM {
 
     private void showToDos() {
         List<ToDo> toDos = _toDoListService.readToDos();
-        if (toDos == null){
+        if (toDos == null) {
             System.out.println("Erreur lors de la récupération des tâches");
-        }
-        else {
+        } else {
             if (toDos.isEmpty()) {
                 System.out.println("Aucune tâche enregistrée");
             } else {
@@ -142,8 +213,7 @@ public class IHM {
             toDo.setStatus(ToDoStatus.COMPLETED);
             if (_toDoListService.updateToDo(toDo)) {
                 System.out.println("ToDo mise à jour");
-            }
-            else {
+            } else {
                 System.out.println("Erreur dans la mise à jour de la todo");
             }
         } else {
@@ -156,10 +226,9 @@ public class IHM {
         System.out.print("Saisir l'id de la ToDo à supprimer : ");
         Long id = scanner.nextLong();
         scanner.nextLine();
-        if (_toDoListService.deleteToDo(id)){
+        if (_toDoListService.deleteToDo(id)) {
             System.out.println("ToDo supprimée");
-        }
-        else {
+        } else {
             System.out.println("Erreur de la suppression de la ToDo");
         }
 
