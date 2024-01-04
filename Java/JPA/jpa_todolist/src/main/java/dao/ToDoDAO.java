@@ -31,8 +31,7 @@ public class ToDoDAO {
     public List<ToDo> get() {
         EntityManager em = _emf.createEntityManager();
         em.getTransaction().begin();
-        List<ToDo> toDos = em.createQuery("SELECT t FROM ToDo t", ToDo.class).getResultList();
-        return toDos;
+        return em.createQuery("SELECT t FROM ToDo t", ToDo.class).getResultList();
     }
 
     public ToDo get(Long id) {
@@ -41,8 +40,7 @@ public class ToDoDAO {
         ToDo toDo = em.find(ToDo.class, id);
         if (toDo != null) {
             em.getTransaction().commit();
-        }
-        else {
+        } else {
             em.getTransaction().rollback();
         }
         em.close();
@@ -52,15 +50,14 @@ public class ToDoDAO {
     public boolean update(ToDo toDo) {
         EntityManager em = _emf.createEntityManager();
         em.getTransaction().begin();
-        ToDo updateToDo = em.find(ToDo.class, toDo.getId());
-        updateToDo.setLabel(toDo.getLabel());
-        updateToDo.setStatus(toDo.getStatus());
-        updateToDo.setInfos(toDo.getInfos());
-        if (em.find(ToDo.class, toDo.getId()).equals(updateToDo)){
-            em.getTransaction().commit();
-            em.close();
-            return true;
+        if (em.find(ToDo.class, toDo.getId()) != null) {
+            if (em.merge(toDo) != null) {
+                em.getTransaction().commit();
+                em.close();
+                return true;
+            }
         }
+        em.close();
         return false;
     }
 

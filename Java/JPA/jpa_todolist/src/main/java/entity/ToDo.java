@@ -12,7 +12,7 @@ public class ToDo {
     private String label;
     @Enumerated(EnumType.STRING)
     private ToDoStatus status;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "todo_infos_id", referencedColumnName = "id_infos_todo")
     private ToDoInfos infos;
 

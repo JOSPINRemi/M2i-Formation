@@ -58,13 +58,10 @@ public class IHM {
         statusMenu();
         choice = scanner.nextLine();
         ToDoStatus status;
-        switch (choice) {
-            case "2":
-                status = ToDoStatus.COMPLETED;
-                break;
-            default:
-                status = ToDoStatus.PENDING;
-                break;
+        if (choice.equals("2")) {
+            status = ToDoStatus.values()[Integer.parseInt(choice)];
+        } else {
+            status = ToDoStatus.PENDING;
         }
         System.out.print("Saisir la description de la ToDo : ");
         String description = scanner.nextLine();
@@ -74,7 +71,7 @@ public class IHM {
         System.out.println("Choisir la priorite de la ToDo :");
         prioriteMenu();
         choice = scanner.nextLine();
-        Integer priorite;
+        int priorite;
         switch (choice){
             case "2":
                 priorite = 2;
@@ -115,8 +112,18 @@ public class IHM {
     }
 
     private void showToDos() {
-        for (ToDo toDo : _toDoListService.readToDos()) {
-            System.out.println(toDo);
+        List<ToDo> toDos = _toDoListService.readToDos();
+        if (toDos == null){
+            System.out.println("Erreur lors de la récupération des tâches");
+        }
+        else {
+            if (toDos.isEmpty()) {
+                System.out.println("Aucune tâche enregistrée");
+            } else {
+                for (ToDo toDo : toDos) {
+                    System.out.println(toDo);
+                }
+            }
         }
     }
 

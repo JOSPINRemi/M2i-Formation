@@ -8,11 +8,11 @@ import java.sql.Date;
 import java.util.List;
 
 public interface IToDoListService {
-    public ToDo createAndSaveToDo(String label, ToDoStatus status, ToDoInfos infos);
-    public List<ToDo> readToDos();
-    public ToDo readToDo(Long id);
-    public  boolean updateToDo(ToDo toDo);
-    public  boolean deleteToDo(Long id);
+    ToDo createAndSaveToDo(String label, ToDoStatus status, ToDoInfos infos);
+    List<ToDo> readToDos();
+    ToDo readToDo(Long id);
+    boolean updateToDo(ToDo toDo);
+    boolean deleteToDo(Long id);
 
-    public ToDoInfos createAndSaveToDoInfos(String description, Date echeance, Integer priorite);
+    ToDoInfos createAndSaveToDoInfos(String description, Date echeance, Integer priorite);
 }
