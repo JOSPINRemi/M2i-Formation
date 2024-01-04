@@ -7,3 +7,6 @@ SELECT * FROM maison;
 SELECT * FROM adresse;
 
 DROP TABLES maison, adresse;
+
+SELECT * FROM department;
+SELECT * FROM employee;

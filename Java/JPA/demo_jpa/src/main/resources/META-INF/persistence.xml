@@ -7,8 +7,12 @@
         <description>Persistence pour demo jpa à M2i</description>
 
         <class>entity.Person</class>
+
         <class>entity.oneToOne.House</class>
         <class>entity.oneToOne.Address</class>
+
+        <class>entity.oneToMany.Department</class>
+        <class>entity.oneToMany.Employee</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
