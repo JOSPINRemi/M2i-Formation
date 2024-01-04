@@ -14,6 +14,9 @@
         <class>entity.oneToMany.Department</class>
         <class>entity.oneToMany.Employee</class>
 
+        <class>entity.manyToMany.Post</class>
+        <class>entity.manyToMany.Tag</class>
+
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa_demo"/>
