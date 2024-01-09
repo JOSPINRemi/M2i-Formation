@@ -7,8 +7,9 @@
 
     <session-factory>
 
-        <mapping class="model.Produit" />
+<!--        <mapping class="model.Produit"/>-->
 
+        <mapping class="org.example.entities.Produit"/>
     </session-factory>
 
 </hibernate-configuration>
