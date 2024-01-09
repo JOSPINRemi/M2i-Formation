@@ -7,8 +7,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
-import org.hibernate.type.StringType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Demo3 {
@@ -19,24 +19,38 @@ public class Demo3 {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        String search = "P";
-//        Recherche de personnes avec un paramètre nommé avec like
+//        Fonctions d'aggregations :
+//        max()
+        /*Query<Integer> query = session.createQuery("SELECT max(age) FROM Personne ");
+        int maxAge = query.uniqueResult();
+        System.out.println("Age max : " + maxAge);*/
 
-        Query<Personne> personneQuery = session.createQuery("FROM Personne WHERE prenom LIKE :prenom");
-        personneQuery.setParameter("prenom", search + "%", StringType.INSTANCE);
-        List<Personne> personnesStartWithP = personneQuery.list();
+//        avg()
+        /*double moyenneAge = (double) session.createQuery("SELECT avg(age) FROM Personne ").uniqueResult();
+        System.out.println("Moyenne age : " + moyenneAge);*/
 
-        for (Personne p : personnesStartWithP) {
-            System.out.println("Personne avec un prénom commençant par P :" + p);
-        }
+//        Utilisation IN
+        /*List noms = new ArrayList<String>();
+        noms.add("Ine");
+        noms.add("Pafroua");
 
+        Query<Personne> query1 = session.createQuery("FROM Personne WHERE nom IN :noms");
+        query1.setParameter("noms", noms);
 
-        Query<Personne> personneQuery2 = session.createQuery("FROM Personne WHERE prenom LIKE ?1");
-        personneQuery2.setParameter(1, search + "%", StringType.INSTANCE);
-        List<Personne> personnesStartWithP2 = personneQuery2.list();
+        List<Personne> personneList = query1.list();
+        for (Personne p : personneList){
+            System.out.println("Personne : " + p.getPrenom());
+        }*/
 
-        for (Personne p : personnesStartWithP2) {
-            System.out.println("Personne avec un prénom commençant par P :" + p);
-        }
+//        Utilisation execute Update
+        String update_query = "UPDATE Personne SET nom = :nomP WHERE id=2";
+        Query query3 = session.createQuery(update_query);
+        query3.setParameter("nomP", "Romain");
+        int success = query3.executeUpdate();
+
+        session.getTransaction().commit();
+        System.out.println(success);
+        session.close();
+        sessionFactory.close();
     }
 }
