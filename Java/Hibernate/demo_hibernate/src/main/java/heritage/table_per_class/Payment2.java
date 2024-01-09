@@ -1,20 +1,18 @@
-package heritage.joined_table;
+package heritage.table_per_class;
 
 import javax.persistence.*;
-
 import java.util.Date;
 
 @Entity
-@Table(name = "payment")
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Payment {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Payment2 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long idPayment;
     private Double amount;
     private Date paymentDate = new Date();
 
-    public Payment() {
+    public Payment2() {
     }
 
     public Long getIdPayment() {

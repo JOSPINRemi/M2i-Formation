@@ -43,7 +43,7 @@ public abstract class Payment1 {
 
     @Override
     public String toString() {
-        return "Payment1{" +
+        return "Payment2{" +
                 "idPayment=" + idPayment +
                 ", amount=" + amount +
                 ", paymentDate=" + paymentDate +
