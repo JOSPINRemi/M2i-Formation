@@ -107,10 +107,10 @@ public class ProduitService extends BaseService implements Repository<Produit> {
         throw new Exception("erreur valeur");
     }
 
-    public List<Produit> filterByNote(double note) throws Exception {
-        if (note > 0 && note < 5) {
-            Query<Produit> produitQuery = session.createQuery("SELECT p FROM Produit p JOIN Commentaire c GROUP BY c.produit HAVING avg(c.note) >= :note");
-            produitQuery.setParameter("note", note);
+    public List<Produit> filterByNote(float note) throws Exception {
+        if (note >= 0 && note <= 5) {
+            Query<Produit> produitQuery = session.createQuery("FROM Produit WHERE id IN (SELECT c.produit.id FROM Commentaire c GROUP BY c.produit HAVING avg(c.note) >= :note)");
+            produitQuery.setParameter("note", (double) note);
             return produitQuery.list();
         } else {
             throw new Exception("Note invalide");

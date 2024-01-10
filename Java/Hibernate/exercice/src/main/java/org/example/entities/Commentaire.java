@@ -11,7 +11,7 @@ public class Commentaire {
     private String contenu;
     @Temporal(TemporalType.DATE)
     private Date date;
-    private double note;
+    private float note;
     @ManyToOne
     @JoinColumn(name = "produit_id")
     private Produit produit;
@@ -39,8 +39,8 @@ public class Commentaire {
         return note;
     }
 
-    public void setNote(double note) throws Exception {
-        if (note > 0 && note < 5) {
+    public void setNote(float note) throws Exception {
+        if (note >= 0 && note <= 5) {
             this.note = note;
         } else {
             throw new Exception("note invalide");

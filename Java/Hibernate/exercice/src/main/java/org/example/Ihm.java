@@ -293,7 +293,7 @@ public class Ihm {
             commentaire.setDate(Date.valueOf(scanner.nextLine()));
             System.out.print("Saisir la note du produit (entre 0 et 5) : ");
             try {
-                commentaire.setNote(scanner.nextDouble());
+                commentaire.setNote(scanner.nextFloat());
                 scanner.nextLine();
                 produit.getCommentaires().add(commentaire);
                 produitService.update(produit);
@@ -305,7 +305,7 @@ public class Ihm {
 
     private void showProductsNoteGE() {
         System.out.print("Saisir le note minimum : ");
-        double note = scanner.nextDouble();
+        float note = scanner.nextFloat();
         scanner.nextLine();
         try {
             List<Produit> produits = produitService.filterByNote(note);
