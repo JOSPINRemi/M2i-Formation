@@ -78,9 +78,21 @@ public class ProduitService extends BaseService implements Repository<Produit> {
         throw new Exception("erreur date");
     }
 
+    public List<Produit> filterByStock(int max) throws Exception {
+        if (max <= 0){
+            Query<Produit> produitQuery = session.createQuery("FROM Produit WHERE stock <= :max");
+            return produitQuery.list();
+        }
+        throw new Exception("erreur valeur");
+    }
 
-
-
+    public List<Produit> filterByBrand(String brand) throws Exception {
+        if (!brand.isEmpty()){
+            Query<Produit> produitQuery = session.createQuery("FROM Produit WHERE marque LIKE %:brand%");
+            return produitQuery.list();
+        }
+        throw new Exception("erreur valeur");
+    }
 
     public void begin(){
         session = sessionFactory.openSession();

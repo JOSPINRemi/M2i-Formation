@@ -44,8 +44,20 @@ public class Ihm {
                 case 5:
                     deleteProduct();
                     break;
-                    case 6:
+                case 6:
+                    showProductsPriceGT();
+                    break;
+                case 7:
                     showProductsBetweenDates();
+                    break;
+                case 8:
+                    showProductsStockLT();
+                    break;
+                case 9:
+                    showProductsByBrand();
+                    break;
+                case 10:
+                    deleteProductsByBrand();
                     break;
                 default:
                     System.out.println("Choix invalide");
@@ -61,7 +73,11 @@ public class Ihm {
         System.out.println("3 - Afficher un produit");
         System.out.println("4 - Modifier un produit");
         System.out.println("5 - Supprimer un produit");
-        System.out.println("6 - Afficher une produit entre deux dates");
+        System.out.println("6 - Afficher les produits dont le prix est supérieur");
+        System.out.println("7 - Afficher les produits commandés entre deux dates");
+        System.out.println("8 - Afficher les produits dont le stock est inférieur");
+        System.out.println("9 - Afficher les produits d'une marque");
+        System.out.println("10 - Supprimer les produits d'une marque");
         System.out.println("0 - Quitter");
         System.out.print("Choix : ");
     }
@@ -84,10 +100,9 @@ public class Ihm {
 
     private void showProducts() {
         List<Produit> produits = produitService.findAll();
-        if (produits.isEmpty()){
+        if (produits.isEmpty()) {
             System.out.println("Aucun produit enregistré");
-        }
-        else {
+        } else {
             System.out.println("Produits :");
             produits.forEach(System.out::println);
         }
@@ -146,23 +161,82 @@ public class Ihm {
         }
     }
 
-    private void showProductsBetweenDates(){
-        System.out.print("Saisir la date de début : ");
-        Date dateDebut = Date.valueOf(scanner.nextLine());
-        System.out.print("Saisir la date de fin : ");
-        Date dateFin = Date.valueOf(scanner.nextLine());
-        List<Produit> produits = null;
+    private void showProductsPriceGT() {
+        System.out.print("Saisir un prix :");
+        double price = scanner.nextDouble();
+        scanner.nextLine();
+        System.out.println("Produits dont le prix est supérieur à " + price + " :");
         try {
-            produits = produitService.filterByDate(dateDebut, dateFin);
+            produitService.filterByPrice(price).forEach(System.out::println);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void showProductsBetweenDates() {
+        System.out.print("Saisir la date de début : ");
+        Date startDate = Date.valueOf(scanner.nextLine());
+        System.out.print("Saisir la date de fin : ");
+        Date endDate = Date.valueOf(scanner.nextLine());
+        try {
+            List<Produit> produits = produitService.filterByDate(startDate, endDate);
             if (produits.isEmpty()) {
                 System.out.println("Aucun produit entre ces dates");
             } else {
-                System.out.println("Produits entre le " + dateDebut + " et le " + dateFin);
+                System.out.println("Produits entre le " + startDate + " et le " + endDate);
                 produits.forEach(System.out::println);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
+    }
+
+    private void showProductsStockLT() {
+        System.out.print("Saisir le stock maximum : ");
+        int stock = scanner.nextInt();
+        scanner.nextLine();
+        try {
+            List<Produit> produits = produitService.filterByStock(stock);
+            if (produits.isEmpty()) {
+                System.out.println("Aucun produit dont le stock est inférieur à " + stock);
+            } else {
+                System.out.println("Produits dont le stock est inférieur à " + stock + " :");
+                produits.forEach(produit -> System.out.println(produit.getId() + " " + produit.getReference()));
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void showProductsByBrand() {
+        System.out.print("Saisir la marque : ");
+        String brand = scanner.nextLine();
+        try {
+            List<Produit> produits = produitService.filterByBrand(brand);
+            if (produits.isEmpty()) {
+                System.out.println("Aucun produit dont la marque est " + brand);
+            } else {
+                System.out.println("Produits dont la marque est " + brand + " :");
+                produits.forEach(System.out::println);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void deleteProductsByBrand() {
+        System.out.print("Saisir la marque : ");
+        String brand = scanner.nextLine();
+        try {
+            List<Produit> produits = produitService.filterByBrand(brand);
+            if (produits.isEmpty()) {
+                System.out.println("Aucun produit dont la marque est " + brand);
+            } else {
+                produits.forEach(produit -> produitService.delete(produit));
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
