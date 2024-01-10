@@ -21,6 +21,10 @@
 
         <mapping class="demo.model.Personne" />
 
+        <mapping class="demo.composeKey.Employee" />
+
+        <mapping class="demo.embedded.Agence" />
+
     </session-factory>
 
 </hibernate-configuration>

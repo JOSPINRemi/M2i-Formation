@@ -15,3 +15,7 @@ SELECT * FROM demo_heritage.credit_payment2;
 SELECT * FROM demo_heritage.paypal2;
 
 SELECT * FROM demo_heritage.personne;
+
+SELECT * FROM demo_heritage.employee;
+
+SELECT * FROM demo_heritage.agence;
