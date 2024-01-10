@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.entities.Commentaire;
+import org.example.entities.Image;
 import org.example.entities.Produit;
 import org.example.services.ProduitService;
 
@@ -59,6 +61,15 @@ public class Ihm {
                 case 10:
                     deleteProductsByBrand();
                     break;
+                case 11:
+                    addImageToProduct();
+                    break;
+                case 12:
+                    addCommentToProduct();
+                    break;
+                case 13:
+                    showProductsNoteGE();
+                    break;
                 default:
                     System.out.println("Choix invalide");
                     break;
@@ -78,6 +89,9 @@ public class Ihm {
         System.out.println("8 - Afficher les produits dont le stock est inférieur");
         System.out.println("9 - Afficher les produits d'une marque");
         System.out.println("10 - Supprimer les produits d'une marque");
+        System.out.println("11 - Ajouter une image à un produit");
+        System.out.println("12 - Ajouter un commentaire à un produit");
+        System.out.println("13 - Afficher les produits avec une note supérieure ou égale");
         System.out.println("0 - Quitter");
         System.out.print("Choix : ");
     }
@@ -88,10 +102,13 @@ public class Ihm {
         produit.setMarque(scanner.nextLine());
         System.out.print("Saisir la référence : ");
         produit.setReference(scanner.nextLine());
-        System.out.print("Saisir la date d'achat (yyyy-MM-dd : ");
+        System.out.print("Saisir la date d'achat (yyyy-MM-dd) : ");
         produit.setDateAchat(Date.valueOf(scanner.nextLine()));
         System.out.print("Saisir le prix : ");
         produit.setPrix(scanner.nextDouble());
+        scanner.nextLine();
+        System.out.print("Saisir le stock : ");
+        produit.setStock(scanner.nextInt());
         scanner.nextLine();
         if (produitService.create(produit)) {
             System.out.println("Produit ajouté\nDétails du produit : " + produit);
@@ -135,10 +152,13 @@ public class Ihm {
             produit.setMarque(scanner.nextLine());
             System.out.print("Saisir la nouvelle référence : ");
             produit.setReference(scanner.nextLine());
-            System.out.print("Saisir la nouvelle date d'achat (yyyy-MM-dd : ");
+            System.out.print("Saisir la nouvelle date d'achat (yyyy-MM-dd) : ");
             produit.setDateAchat(Date.valueOf(scanner.nextLine()));
             System.out.print("Saisir le nouveau prix : ");
             produit.setPrix(scanner.nextDouble());
+            scanner.nextLine();
+            System.out.print("Saisir le nouveau stock : ");
+            produit.setStock(scanner.nextInt());
             scanner.nextLine();
             if (produitService.update(produit)) {
                 System.out.println("Produit modifié\nDétails du produit : " + produit);
@@ -162,7 +182,7 @@ public class Ihm {
     }
 
     private void showProductsPriceGT() {
-        System.out.print("Saisir un prix :");
+        System.out.print("Saisir un prix : ");
         double price = scanner.nextDouble();
         scanner.nextLine();
         System.out.println("Produits dont le prix est supérieur à " + price + " :");
@@ -189,7 +209,6 @@ public class Ihm {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
     private void showProductsStockLT() {
@@ -202,7 +221,7 @@ public class Ihm {
                 System.out.println("Aucun produit dont le stock est inférieur à " + stock);
             } else {
                 System.out.println("Produits dont le stock est inférieur à " + stock + " :");
-                produits.forEach(produit -> System.out.println(produit.getId() + " " + produit.getReference()));
+                produits.forEach(produit -> System.out.println("Id:" + produit.getId() + " Ref:" + produit.getReference()));
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -234,6 +253,67 @@ public class Ihm {
                 System.out.println("Aucun produit dont la marque est " + brand);
             } else {
                 produits.forEach(produit -> produitService.delete(produit));
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void addImageToProduct() {
+        produitService.findAll().forEach(System.out::println);
+        System.out.print("Saisir l'id du produit : ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        Produit produit = produitService.findById(id);
+        if (produit == null) {
+            System.out.println("Le produit avec l'id " + id + " n'existe pas");
+        } else {
+            Image image = new Image();
+            System.out.print("Saisir l'url de l'image : ");
+            image.setUrl(scanner.nextLine());
+            produit.getImages().add(image);
+            produitService.update(produit);
+        }
+    }
+
+    private void addCommentToProduct() {
+        produitService.findAll().forEach(System.out::println);
+        System.out.print("Saisir l'id du produit : ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        Produit produit = produitService.findById(id);
+        if (produit == null) {
+            System.out.println("Le produit avec l'id " + id + " n'existe pas");
+        } else {
+            System.out.println("Création du commentaire :");
+            Commentaire commentaire = new Commentaire();
+            System.out.print("Saisir le contenu : ");
+            commentaire.setContenu(scanner.nextLine());
+            System.out.print("Saisir la date (yyyy-MM-dd) : ");
+            commentaire.setDate(Date.valueOf(scanner.nextLine()));
+            System.out.print("Saisir la note du produit (entre 0 et 5) : ");
+            try {
+                commentaire.setNote(scanner.nextDouble());
+                scanner.nextLine();
+                produit.getCommentaires().add(commentaire);
+                produitService.update(produit);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private void showProductsNoteGE() {
+        System.out.print("Saisir le note minimum : ");
+        double note = scanner.nextDouble();
+        scanner.nextLine();
+        try {
+            List<Produit> produits = produitService.filterByNote(note);
+            if (produits.isEmpty()) {
+                System.out.println("Aucun produit dont la note est supérieure ou égale à " + note);
+            } else {
+                System.out.println("Produits dont la note est supérieure ou égale à " + note + " :");
+                produits.forEach(System.out::println);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -10,6 +10,8 @@
 <!--        <mapping class="model.Produit"/>-->
 
         <mapping class="org.example.entities.Produit"/>
+        <mapping class="org.example.entities.Image"/>
+        <mapping class="org.example.entities.Commentaire"/>
     </session-factory>
 
 </hibernate-configuration>

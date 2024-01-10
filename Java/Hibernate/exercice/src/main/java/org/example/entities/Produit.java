@@ -2,34 +2,28 @@ package org.example.entities;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Produit {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String marque;
-
     private String reference;
-
     @Temporal(TemporalType.DATE)
     private Date dateAchat;
-
     private double prix;
-
     private int stock;
+    @OneToMany(mappedBy = "produit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Image> images = new ArrayList<>();
+    @OneToMany(mappedBy = "produit", cascade = CascadeType.ALL)
+    private List<Commentaire> commentaires = new ArrayList<>();
 
     public Produit() {
-    }
 
-    public Produit(String marque, String reference, Date dateAchat, double prix) {
-        this.marque = marque;
-        this.reference = reference;
-        this.dateAchat = dateAchat;
-        this.prix = prix;
     }
 
     public int getId() {
@@ -80,6 +74,22 @@ public class Produit {
         this.stock = stock;
     }
 
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+    public List<Commentaire> getCommentaires() {
+        return commentaires;
+    }
+
+    public void setCommentaires(List<Commentaire> commentaires) {
+        this.commentaires = commentaires;
+    }
+
     @Override
     public String toString() {
         return "Produit{" +
@@ -89,6 +99,8 @@ public class Produit {
                 ", dateAchat=" + dateAchat +
                 ", prix=" + prix +
                 ", stock=" + stock +
+                ", images=" + images +
+                ", commentaires=" + commentaires +
                 '}';
     }
 }
