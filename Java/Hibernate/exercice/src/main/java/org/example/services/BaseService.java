@@ -17,6 +17,5 @@ public abstract class BaseService {
     public BaseService() {
         registre = new StandardServiceRegistryBuilder().configure().build();
         sessionFactory = new MetadataSources(registre).buildMetadata().buildSessionFactory();
-
     }
 }
