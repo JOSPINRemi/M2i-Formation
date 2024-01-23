@@ -1,4 +1,4 @@
-package org.example.demo;
+package org.example.demo.servlet;
 
 import java.io.*;
 
@@ -20,6 +20,7 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
+        out.println("path : " + request.getContextPath());
         out.println("</body></html>");
     }
 
