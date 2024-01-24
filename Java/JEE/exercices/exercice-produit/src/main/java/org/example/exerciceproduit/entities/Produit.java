@@ -9,6 +9,7 @@ public class Produit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String urlImage;
     private String marque;
     private String reference;
     @Temporal(TemporalType.DATE)
@@ -25,6 +26,14 @@ public class Produit {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
     public String getMarque() {

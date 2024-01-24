@@ -8,6 +8,6 @@
 <h1>Bienvenue!</h1>
 <p>Bienvenue sur le site</p>
 <br/>
-<a href="produits">Afficher tous les produits</a>
+<a href="connexion">Afficher tous les produits</a>
 </body>
 </html>

@@ -7,6 +7,7 @@
 <body>
 <h1>Détails du produit ${produit.getId()}</h1>
 <br/>
+<img src="images/${produit.getUrlImage()}">
 <p>Marque : ${produit.getMarque()}</p>
 <p>Reference : ${produit.getReference()}</p>
 <p>Date d'achat : ${produit.getDateAchat()}</p>

@@ -8,6 +8,7 @@
     <session-factory>
 
         <mapping class="org.example.exerciceproduit.entities.Produit" />
+        <mapping class="org.example.exerciceproduit.entities.Utilisateur" />
 
     </session-factory>
 

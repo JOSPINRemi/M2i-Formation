@@ -1,4 +1,4 @@
-package org.example.exerciceproduit.servlet;
+package org.example.exerciceproduit.servlet.produit;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -25,6 +25,6 @@ public class ProduitsServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         produits = produitService.findAll();
         request.setAttribute("produits", produits);
-        request.getRequestDispatcher("produits.jsp").forward(request, response);
+        request.getRequestDispatcher("views/produit/produits.jsp").forward(request, response);
     }
 }
