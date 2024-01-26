@@ -26,8 +26,8 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        if (session.getAttribute("isLogged") != null || session.getAttribute("isLogged").equals(false)) {
-            session.removeAttribute("isLogged");
+        if (session.getAttribute("logged") != null || session.getAttribute("logged").equals(false)) {
+            session.removeAttribute("logged");
             session.removeAttribute("username");
         }
         req.getRequestDispatcher("login.jsp").forward(req, resp);
@@ -58,7 +58,7 @@ public class UserServlet extends HttpServlet {
             User user3 = userService.findByEmailAndPassword(user2);
             if (user3 != null) {
                 HttpSession session = req.getSession();
-                session.setAttribute("isLogged", true);
+                session.setAttribute("logged", true);
                 session.setAttribute("username", user3.getUsername());
                 resp.sendRedirect("list");
             } else {

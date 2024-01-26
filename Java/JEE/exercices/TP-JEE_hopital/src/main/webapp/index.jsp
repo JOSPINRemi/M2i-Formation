@@ -2,11 +2,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>TP-JEE hôpital</title>
 </head>
 <body>
-<h1>TP-JEE hôpital</h1>
+<h1>Gestion d'un hôpital</h1>
 <br/>
-<a href="">Démarrage</a>
+<p>
+    Bonjour et bienvenue dams l'hôpital,<br/>
+    Pour commencer appuyer sur Démarrage
+</p>
+<a href="list">Démarrage</a>
 </body>
 </html>

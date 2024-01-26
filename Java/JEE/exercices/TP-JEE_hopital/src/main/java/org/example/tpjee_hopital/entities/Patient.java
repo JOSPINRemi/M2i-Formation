@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,5 +29,9 @@ public class Patient {
     @Basic(fetch = FetchType.LAZY)
     private byte[] profilePicture;
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
-    private List<MedicalConsultation> consultations;
+    private List<MedicalConsultation> consultations = new ArrayList<>();
+
+    public void addMedicalConsultation(MedicalConsultation medicalConsultation){
+        consultations.add(medicalConsultation);
+    }
 }
