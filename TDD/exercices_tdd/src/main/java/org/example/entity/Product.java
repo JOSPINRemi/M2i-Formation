@@ -14,17 +14,20 @@ public class Product {
     }
 
     public void update() {
+        int qualityChange;
         if (category.equals("diary") && sellIn == 0) {
-            setQuality(quality - 4);
+            qualityChange = -4;
         } else if (category.equals("diary")) {
-            setQuality(quality - 2);
+            qualityChange = -2;
         } else if (name.equals("Brie Vieilli")) {
-            setQuality(quality + 1);
+            qualityChange = 1;
         } else if (sellIn == 0) {
-            setQuality(quality - 2);
+            qualityChange = -2;
         } else {
-            setQuality(quality - 1);
+            qualityChange = -1;
         }
+        setQuality(quality + qualityChange);
+        sellIn = -1;
     }
 
     public int getQuality() {
