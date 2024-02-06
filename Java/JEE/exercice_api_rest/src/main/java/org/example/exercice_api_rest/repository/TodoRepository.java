@@ -14,6 +14,6 @@ public class TodoRepository extends Repository<Todo> {
 
     @Override
     public List<Todo> findAll() {
-        return session.createQuery("from Todo ").list();
+        return session.createQuery("from Todo ", Todo.class).list();
     }
 }

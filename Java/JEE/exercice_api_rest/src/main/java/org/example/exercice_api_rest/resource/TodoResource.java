@@ -9,8 +9,9 @@ import org.example.exercice_api_rest.service.TodoService;
 import java.util.List;
 
 @Path("todos")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class TodoResource {
-
     private final TodoService todoService;
 
     @Inject
@@ -19,32 +20,30 @@ public class TodoResource {
     }
 
     @GET
-    public List<String> get() {
+    public List<TodoDto> get() {
         return todoService.getTodos();
     }
 
     @GET
     @Path("{id}")
-    public String get(@PathParam("id") Long id) {
+    public TodoDto get(@PathParam("id") Long id) {
         return todoService.getTodo(id);
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public TodoDto post(TodoDto todoDto) {
         return todoService.createTodo(todoDto);
     }
 
     @PATCH
     @Path("{id}")
-    public String pathStatus(@PathParam("id") Long id) {
-        return todoService.updateTodo(id);
+    public TodoDto pathStatus(@PathParam("id") Long id) {
+        return todoService.changeStatus(id);
     }
 
     @DELETE
     @Path("{id}")
-    public String delete(@PathParam("id") Long id) {
+    public boolean delete(@PathParam("id") Long id) {
         return todoService.delete(id);
     }
 }

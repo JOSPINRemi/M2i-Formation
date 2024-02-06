@@ -8,8 +8,8 @@ import org.example.exercice_api_rest.repository.TodoRepository;
 import org.example.exercice_api_rest.utils.HibernateSession;
 import org.hibernate.Session;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class TodoService {
@@ -21,74 +21,67 @@ public class TodoService {
     }
 
     public TodoDto createTodo(TodoDto todoDto) {
-        Todo todo = todoDto.toEntity();
         Session session = HibernateSession.getSessionFactory().openSession();
-        todoRepository.setSession(session);
         session.beginTransaction();
-        try {
+        try (session) {
+            todoRepository.setSession(session);
+            Todo todo = todoDto.toEntity();
             todoRepository.create(todo);
             session.getTransaction().commit();
             return todo.toDto();
         } catch (Exception ex) {
             session.getTransaction().rollback();
             throw ex;
-        } finally {
-            session.close();
         }
     }
 
-    public List<String> getTodos() {
+    public List<TodoDto> getTodos() {
         Session session = HibernateSession.getSessionFactory().openSession();
-        todoRepository.setSession(session);
-        List<Todo> todos = todoRepository.findAll();
-        List<String> todosContent = new ArrayList<>();
-        for (Todo todo : todos) {
-            todosContent.add(todo.getContent());
+        try (session) {
+            todoRepository.setSession(session);
+            return todoRepository.findAll()
+                    .stream().map(Todo::toDto)
+                    .collect(Collectors.toList());
         }
-        session.close();
-        return todosContent;
     }
 
-    public String getTodo(Long id) {
+    public TodoDto getTodo(Long id) {
         Session session = HibernateSession.getSessionFactory().openSession();
-        todoRepository.setSession(session);
-        session.close();
-        return todoRepository.findById(id).getContent();
-    }
-
-    public String updateTodo(Long id) {
-        Session session = HibernateSession.getSessionFactory().openSession();
-        todoRepository.setSession(session);
-        session.beginTransaction();
-        try {
+        try (session) {
+            todoRepository.setSession(session);
             Todo todo = todoRepository.findById(id);
+            return todo.toDto();
+        }
+    }
+
+    public TodoDto changeStatus(Long id) {
+        Session session = HibernateSession.getSessionFactory().openSession();
+        session.beginTransaction();
+        try (session) {
+            todoRepository.setSession(session);
+            Todo todo = todoRepository.findById(id);
+            todo.setStatus(!todo.isStatus());
             todoRepository.update(todo);
             session.getTransaction().commit();
-            return todo.getContent();
+            return todo.toDto();
         } catch (Exception e) {
             session.getTransaction().rollback();
             throw e;
-        } finally {
-            session.close();
         }
-
     }
 
-    public String delete(Long id) {
+    public boolean delete(Long id) {
         Session session = HibernateSession.getSessionFactory().openSession();
-        todoRepository.setSession(session);
         session.beginTransaction();
-        try {
+        try (session) {
+            todoRepository.setSession(session);
             Todo todo = todoRepository.findById(id);
             todoRepository.delete(todo);
             session.getTransaction().commit();
-            return todo.getContent();
+            return true;
         } catch (Exception e) {
             session.getTransaction().rollback();
             throw e;
-        } finally {
-            session.close();
         }
-
     }
 }
