@@ -10,9 +10,9 @@ public class BookEntityRepository extends BaseEntityRepository<BookEntity> {
         return session.get(BookEntity.class, id);
     }
 
-    public List<BookEntity> findAllByTitle(String key) {
+    public List<BookEntity> findByTitle(String title) {
         return session.createQuery("from BookEntity where title like :t", BookEntity.class)
-                .setParameter("t", key)
+                .setParameter("t", title)
                 .list();
     }
 

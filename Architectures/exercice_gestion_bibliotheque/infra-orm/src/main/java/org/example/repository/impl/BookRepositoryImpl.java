@@ -50,7 +50,7 @@ public class BookRepositoryImpl implements BookRepository {
     public List<Book> search(String title) {
         Session session = HibernateSession.getSessionFactory().openSession();
         try (session) {
-            return bookEntityRepository.findAllByTitle(title)
+            return bookEntityRepository.findByTitle(title)
                     .stream().map(BookEntity::toBook)
                     .collect(Collectors.toList());
         }

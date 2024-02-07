@@ -32,7 +32,8 @@ public class BookService {
         Book book = bookRepository.findById(id);
         if (book != null) {
             bookRepository.delete(book);
+        } else {
+            throw new RuntimeException("Book not found");
         }
-        throw new RuntimeException("Book not found");
     }
 }
