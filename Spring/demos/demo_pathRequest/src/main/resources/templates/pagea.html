@@ -23,8 +23,12 @@
     </nav>
     <img th:src="@{/images/lapin.png}" alt="lapin">
 </header>
-<ul th:each="lapin : ${lapins}">
-    <li><a th:href="@{/detail/{id}(id=${lapin.id})}">Détails de <span th:text="${lapin.name}"/></a></li>
+<ul>
+    <li th:each="lapin : ${lapins}">
+        <a th:href="@{/detail/{id}(id=${lapin.id})}">
+            Détails de <span th:text="${lapin.name}"/>
+        </a>
+    </li>
 </ul>
 </body>
 </html>
