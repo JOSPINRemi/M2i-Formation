@@ -16,9 +16,8 @@ public class StudentRestController {
     private final StudentService studentService;
 
     @PostMapping("/add")
-    public UUID submit(@ModelAttribute("student") Student student){
-        studentService.addStudent(student);
-        return student.getId();
+    public UUID submit(@RequestBody Student student) {
+        return studentService.createStudent(student).getId();
     }
 
     @GetMapping("/students")
