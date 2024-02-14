@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire d'inscription</title>
+    <span th:replace="~{home :: bootstrapImports}"></span>
+</head>
+<body>
+
+<header>
+    <span th:replace="~{home :: navbar}"></span>
+    <h1>Inscription</h1>
+</header>
+<main>
+    <form th:action="@{/add}" th:object="${student}" method="post">
+        <div>
+            <label for="lastname"> Nom : </label>
+            <input type="text" id="lastname" th:field="*{lastName}">
+        </div>
+        <div>
+            <label for="firstname"> Prénom : </label>
+            <input type="text" id="firstname" th:field="*{firstName}">
+        </div>
+        <div>
+            <label for="age"> Age : </label>
+            <input type="number" min="0" max="100" step="1" id="age" th:field="*{age}">
+        </div>
+        <div>
+            <label for="mail"> Email : </label>
+            <input type="text" id="mail" th:field="*{email}">
+        </div>
+        <button>Inscrire</button>
+    </form>
+    <a th:href="@{/}">Annuler</a>
+</main>
+
+</body>
+</html>

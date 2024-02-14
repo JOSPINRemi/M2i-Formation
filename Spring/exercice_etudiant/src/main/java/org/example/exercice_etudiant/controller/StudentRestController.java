@@ -3,6 +3,7 @@ package org.example.exercice_etudiant.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.exercice_etudiant.model.Student;
 import org.example.exercice_etudiant.service.StudentService;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,5 +29,10 @@ public class StudentRestController {
     @GetMapping("/student/{studentId}")
     public Student getStudent(@PathVariable("studentId") UUID id) {
         return studentService.getStudentById(id);
+    }
+
+    @GetMapping("/search")
+    public List<Student> searchStudents(@RequestParam(name = "lastname", required = false) String lastName){
+        return studentService.getStudentsByLastName(lastName);
     }
 }

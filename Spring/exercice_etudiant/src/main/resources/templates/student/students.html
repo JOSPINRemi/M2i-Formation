@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Etudiants</title>
+    <span th:replace="~{home :: bootstrapImports}"></span>
+</head>
+<body>
+<header>
+    <span th:replace="~{home :: navbar}"></span>
+    <h1 th:if="${!search}">Liste des étudiants</h1>
+    <h1 th:if="${search}">Recherche</h1>
+</header>
+<div class="container">
+    <p th:if="${students.isEmpty() && !search}">Aucun étudiant enregisté</p>
+    <p th:if="${students.isEmpty() && search}">Aucun étudiant trouvé</p>
+    <table class="table" th:if="${!students.isEmpty()}">
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="s : ${students}">
+            <td th:text="${s.lastName}"/>
+            <td th:text="${s.firstName}"/>
+            <td><a th:href="@{/student/{id}(id=${s.id})}"><span>Détails</span> </a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
