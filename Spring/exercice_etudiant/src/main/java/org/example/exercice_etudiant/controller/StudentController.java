@@ -28,7 +28,7 @@ public class StudentController {
 
     @PostMapping("/add")
     public String  submit(@ModelAttribute("student") Student student){
-        studentService.addStudent(student);
+        studentService.createStudent(student);
         return "redirect:/students";
     }
 
