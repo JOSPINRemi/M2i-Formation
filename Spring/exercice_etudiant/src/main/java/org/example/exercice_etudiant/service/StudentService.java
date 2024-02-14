@@ -17,11 +17,10 @@ public class StudentService {
         this.students = new HashMap<>();
     }
 
-    public void addStudent(Student student) {
-        if (student.getId() == null) {
-            student.setId(UUID.randomUUID());
-            students.put(student.getId(), student);
-        }
+    public Student createStudent(Student student) {
+        student.setId(UUID.randomUUID());
+        students.put(student.getId(), student);
+        return student;
     }
 
     public List<Student> getStudents() {
@@ -35,7 +34,15 @@ public class StudentService {
     public List<Student> getStudentsByLastName(String lastName) {
         return students.values()
                 .stream()
-                .filter(s -> s.getLastName().equalsIgnoreCase(lastName))
+                .filter(s -> s.getLastName().toLowerCase().contains(lastName.toLowerCase()))
                 .collect(Collectors.toList());
+    }
+
+    public Student updateStudent(Student student) {
+        return students.replace(student.getId(), student);
+    }
+
+    public void deleteStudent(UUID studentId) {
+        students.remove(studentId);
     }
 }
