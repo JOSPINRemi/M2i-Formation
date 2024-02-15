@@ -16,18 +16,18 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping
-    public String homePage(){
+    public String homePage() {
         return "home";
     }
 
     @GetMapping("/add")
-    public String addStudent(Model model){
+    public String addStudent(Model model) {
         model.addAttribute("student", new Student());
         return "student/form";
     }
 
     @PostMapping("/add")
-    public String  submit(@ModelAttribute("student") Student student){
+    public String submit(@ModelAttribute("student") Student student) {
         studentService.createStudent(student);
         return "redirect:/students";
     }
@@ -48,10 +48,31 @@ public class StudentController {
     }
 
     @GetMapping("/search")
-    public String searchStudents(@RequestParam(name = "lastname", required = false) String lastName, Model model){
+    public String searchStudents(@RequestParam(name = "lastname", required = false) String lastName, Model model) {
         List<Student> students = studentService.getStudentsByLastName(lastName);
         model.addAttribute("students", students);
         model.addAttribute("search", true);
+        return "student/students";
+    }
+    @GetMapping("/update/{studentId}")
+    public String updateForm(@PathVariable UUID studentId, Model model) {
+        model.addAttribute("student", studentService.getStudentById(studentId));
+        return "student/form";
+    }
+
+//    FIXME: erreur lors de la modification d'un étudiant
+    @PutMapping("/update/{studentId}")
+    public String updateStudent(@PathVariable UUID studentId, @RequestBody Student student) {
+        if (student.getId().equals(studentId)) {
+            studentService.updateStudent(student);
+        }
+        return "student/students";
+    }
+
+//    FIXME: erreur lors de la suppression d'un étudiant
+    @DeleteMapping("/delete/{studentId}")
+    public String deleteStudent(@PathVariable UUID studentId) {
+        studentService.deleteStudent(studentId);
         return "student/students";
     }
 }

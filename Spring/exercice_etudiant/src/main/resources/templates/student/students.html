@@ -27,6 +27,7 @@
             <td th:text="${s.lastName}"/>
             <td th:text="${s.firstName}"/>
             <td><a th:href="@{/student/{id}(id=${s.id})}"><span>Détails</span> </a></td>
+            <td><a th:href="@{/update/{id}(id=${s.id})}"><span>Modifier</span> </a></td>
         </tr>
         </tbody>
     </table>

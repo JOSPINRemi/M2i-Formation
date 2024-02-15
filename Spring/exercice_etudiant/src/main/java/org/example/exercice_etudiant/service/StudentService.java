@@ -42,7 +42,7 @@ public class StudentService {
         return students.replace(student.getId(), student);
     }
 
-    public void deleteStudent(UUID studentId) {
-        students.remove(studentId);
+    public boolean deleteStudent(UUID studentId) {
+        return students.remove(studentId) != null;
     }
 }
