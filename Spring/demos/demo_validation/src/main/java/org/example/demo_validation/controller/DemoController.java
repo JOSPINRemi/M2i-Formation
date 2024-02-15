@@ -15,11 +15,11 @@ public class DemoController {
         return "hello";
     }
 
-    @GetMapping("/pb")
+    /*@GetMapping("/pb")
     public String pb(){
         if (true) {
             throw new RuntimeException("Problème");
         }
         return "hello";
-    }
+    }*/
 }
