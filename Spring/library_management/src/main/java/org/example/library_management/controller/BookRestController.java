@@ -3,6 +3,7 @@ package org.example.library_management.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.library_management.entity.Book;
 import org.example.library_management.service.BookService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,11 @@ public class BookRestController {
     @GetMapping()
     public List<Book> getAllBooks() {
         return bookService.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public Book get(@PathVariable Long id) {
+        return bookService.findById(id);
     }
 
     @DeleteMapping("/{id}")
