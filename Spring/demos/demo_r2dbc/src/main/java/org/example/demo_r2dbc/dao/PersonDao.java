@@ -27,7 +27,14 @@ public class PersonDao {
                                 "id INT PRIMARY KEY AUTO_INCREMENT, " +
                                 "last_name varchar(100), " +
                                 "first_name varchar(100)" +
-                                ")"
+                                ")" +
+                                "; " +
+                        "CREATE TABLE IF NOT EXISTS Address(" +
+                                "id INT PRIMARY KEY AUTO_INCREMENT, "+
+                                "full_address VARCHAR(100), "+
+                                "person_id INT"+
+                                ")" +
+                                ";"
                 )
                 .then()
                 .doOnSuccess((Void) -> {

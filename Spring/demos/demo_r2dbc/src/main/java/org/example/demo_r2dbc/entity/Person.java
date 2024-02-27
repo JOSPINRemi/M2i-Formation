@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Person {
 
+    @Id
     private int id;
 
     private String lastName;
