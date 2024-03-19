@@ -17,7 +17,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @PostMapping("/admin")
+    @PostMapping("/admin/post")
     public ResponseEntity<Product> save(@RequestBody ProductDto productDto) {
         return ResponseEntity.ok(productService.save(productDto.getName(), productDto.getPrice()));
     }
