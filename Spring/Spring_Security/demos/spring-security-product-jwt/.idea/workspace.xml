@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8445babf-63c9-40d0-858f-f6c9e5383425" name="Changes" comment="java backend product api" />
+    <list default="true" id="8445babf-63c9-40d0-858f-f6c9e5383425" name="Changes" comment="java backend product api">
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/.eslintrc.cjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/public/vite.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/src/App.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/src/assets/react.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/src/components/Login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/src/components/ProductList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/src/components/Register.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/src/main.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/src/services/authService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/src/services/productService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/src/shared/Header.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-spring-jwt/react-spring-product/vite.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,7 +38,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
   </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
@@ -32,28 +54,28 @@
     <option name="showLibraryContents" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.JwtSpringSecurityApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.JwtSpringSecurityApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="JwtSpringSecurityApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="JwtSpringSecurity" />
@@ -81,6 +103,8 @@
       <workItem from="1710947455240" duration="1070000" />
       <workItem from="1710948614684" duration="1754000" />
       <workItem from="1710952333082" duration="121000" />
+      <workItem from="1710952510395" duration="119000" />
+      <workItem from="1711007935648" duration="612000" />
     </task>
     <task id="LOCAL-00001" summary="java backend product api">
       <option name="closed" value="true" />
@@ -95,6 +119,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="java backend product api" />
