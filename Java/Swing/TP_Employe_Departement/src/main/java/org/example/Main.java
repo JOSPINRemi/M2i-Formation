@@ -11,7 +11,7 @@ public class Main {
             public void run() {
                 try {
                     SalarieTableModel salarieTableModel = new SalarieTableModel();
-                    salarieTableModel.setTitle("Gestion des salariés");
+                    salarieTableModel.setTitle("Gestion des Salaries");
                     salarieTableModel.setLocationRelativeTo(null);
                     salarieTableModel.setVisible(true);
                 } catch (Exception e) {

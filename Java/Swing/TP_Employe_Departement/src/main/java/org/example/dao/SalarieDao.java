@@ -23,7 +23,7 @@ public class SalarieDao {
             preparedStatement = connection.prepareStatement(
                     "INSERT INTO `salarie` " +
                             "(`lastName`, `firstName`, `role`)" +
-                        "VALUES " +
+                            "VALUES " +
                             "(?, ?, ?)"
             );
             preparedStatement.setString(1, salarie.getLastName());
@@ -48,7 +48,7 @@ public class SalarieDao {
             );
             ResultSet resultSet = preparedStatement.executeQuery();
             salaries = new ArrayList<>();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 Salarie salarie = new Salarie();
                 salarie.setId(resultSet.getInt(1));
                 salarie.setLastName(resultSet.getString(2));
@@ -61,6 +61,24 @@ public class SalarieDao {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public int delete(int id) {
+        connection = ConnexionDb.getConnection();
+        try {
+            preparedStatement = connection.prepareStatement(
+                    "DELETE " +
+                            "FROM `salarie`"
+                            + "WHERE id = ?"
+            );
+            preparedStatement.setInt(1, id);
+            int n = preparedStatement.executeUpdate();
+            connection.close();
+            return n;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 }
